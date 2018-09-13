@@ -6301,6 +6301,64 @@ namespace GingerCore.Drivers
         {
             return true;
         }
+        public override void AfterRun(Act act)
+        {
+            //Validating the value after iit's being set
+            if (act.ReturnValues.Count(x => x.Param == "Actual") > 0)
+            {
+                switch (act.GetType().Name)
+                {
+                    case "ActGenElement":
+                      
+                            ActGenElement GenricElementAction = (ActGenElement)act;
+
+                        switch (GenricElementAction.GenElementAction)
+                        {
+                            case ActGenElement.eGenElementAction.SetValue:
+                            case ActGenElement.eGenElementAction.SendKeys:
+                            case ActGenElement.eGenElementAction.KeyboardInput:
+                            case ActGenElement.eGenElementAction.KeyType:
+
+                                IWebElement e = LocateElement(act);
+                                string ElementValue;
+                                if (!string.IsNullOrEmpty(e.Text))
+                                {
+                                    ElementValue = e.Text;
+                                }
+                                else if (!string.IsNullOrEmpty(e.GetAttribute("value")))
+                                {
+                                    ElementValue = e.GetAttribute("value");
+                                }
+                                else if (!string.IsNullOrEmpty(e.GetAttribute("textContent")))
+                                {
+                                    ElementValue = e.GetAttribute("textContent");
+                                }
+                                else
+                                {
+                                    ElementValue = e.GetAttribute("innerText");
+                                }
+
+                                act.AddOrUpdateReturnParamActual("Actual", ElementValue);
+                                break;
+                            default:
+                                //not required for all actions
+                                break;
+                        }
+
+                break;
+
+
+
+
+
+                    default:
+                        throw new NotImplementedException("Validation is not implemented for" + act.GetType().ToString());
+
+                        
+                }
+            }
+           
+        }
 
         public void TestElementLocators(ObservableList<ElementLocator> elementLocators)
         {

@@ -164,7 +164,10 @@ namespace GingerCore.Drivers.Appium
         {
             CreateSTA(ShowDriverWindow);
         }
-
+        public override void AfterRun(Act act)
+        {
+            mSeleniumDriver.AfterRun(act);
+        }
         public void ShowDriverWindow()
         {
             //show mobile window

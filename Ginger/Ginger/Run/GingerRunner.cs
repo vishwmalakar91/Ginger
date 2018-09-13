@@ -1550,6 +1550,8 @@ namespace Ginger.Run
                                 {
                                     CurrentBusinessFlow.CurrentActivity.CurrentAgent.RunAction(act);
                                 }
+
+                                CurrentBusinessFlow.CurrentActivity.CurrentAgent.Driver.AfterRun(act);
                             }
                             break;
 

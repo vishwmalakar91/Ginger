@@ -89,6 +89,11 @@ namespace GingerCore.Drivers
         // running an action on the UI
         public abstract void RunAction(Act act);
 
+        public virtual void AfterRun(Act act)
+        {
+
+        }
+
 
         // UI Inspector
 
