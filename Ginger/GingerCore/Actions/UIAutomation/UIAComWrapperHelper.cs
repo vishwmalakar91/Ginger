@@ -729,7 +729,7 @@ namespace GingerCore.Drivers
                     ElementCondition = new PropertyCondition(AutomationElementIdentifiers.NameProperty, a.LocateValue);
                     return ElementCondition;
                 default:
-                    a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     a.ExInfo = "Unknown Locator - " + a.LocateBy;
                     return null;
                     //break;
@@ -2187,7 +2187,7 @@ namespace GingerCore.Drivers
             }
             else
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 act.ExInfo = "Element not found";
             }
         }

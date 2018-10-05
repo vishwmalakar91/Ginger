@@ -234,7 +234,7 @@ namespace GingerCore.Drivers.MainFrame
             }
             catch (Exception e)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 act.ExInfo = e.Message;
             }
         }

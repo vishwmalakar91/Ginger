@@ -70,7 +70,7 @@ namespace GingerCore.Actions
             }
             catch (Exception e)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 act.Error = "Element not found - " + act.LocateBy + " - " + act.LocateValue + Environment.NewLine + e.Message; //TODO add to accomidate multiple locators need to be done for UIA
                 return null;
             }

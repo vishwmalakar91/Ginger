@@ -218,7 +218,7 @@ namespace Ginger.Actions
                 SetViewMode();
             }
 
-            if (mAction.Status == null || mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending || mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.NA)
+            if (mAction.Status == null || mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending || mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.NA)
                 xRunStatusExpander.IsExpanded = false;
 
             InitActionLog();
@@ -636,7 +636,7 @@ namespace Ginger.Actions
         {
             this.Dispatcher.Invoke(() =>
             {
-                if (mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running)
+                if (mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Running)
                 {
                     mRunActionBtn.Visibility = Visibility.Collapsed;
                     mStopRunBtn.Visibility = Visibility.Visible;
@@ -654,7 +654,7 @@ namespace Ginger.Actions
             this.Dispatcher.Invoke(() =>
             {
                 Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
-                mAction.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                mAction.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                 if (mAction.GetType() == typeof(ActLowLevelClicks))
                     App.MainWindow.WindowState = WindowState.Minimized;
                 mAction.IsSingleAction = true;
@@ -689,12 +689,12 @@ namespace Ginger.Actions
             WarningImage.Visibility = System.Windows.Visibility.Collapsed;
             ErrorTextBlock.Visibility = System.Windows.Visibility.Collapsed;
             ExtraInfoTextBlock.Visibility = System.Windows.Visibility.Collapsed;
-            if (mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
                 PassImage.Visibility = System.Windows.Visibility.Visible;
                 ExtraInfoTextBlock.Visibility = System.Windows.Visibility.Visible;
             }
-            else if (mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+            else if (mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
             {
                 FailImage.Visibility = System.Windows.Visibility.Visible;
                 ErrorTextBlock.Visibility = System.Windows.Visibility.Visible;

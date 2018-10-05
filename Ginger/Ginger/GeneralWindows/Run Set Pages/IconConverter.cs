@@ -32,30 +32,30 @@ namespace Ginger.MoveToGingerWPF.Run_Set_Pages
         {            
             eImageType ico = eImageType.Pending;//defualt icon
 
-            if (value != null && value.GetType() == typeof(Amdocs.Ginger.CoreNET.Execution.eRunStatus))
+            if (value != null && value.GetType() == typeof(Amdocs.Ginger.Common.Enums.eRunStatus))
             {
-                Amdocs.Ginger.CoreNET.Execution.eRunStatus status = (Amdocs.Ginger.CoreNET.Execution.eRunStatus)value;
+                Amdocs.Ginger.Common.Enums.eRunStatus status = (Amdocs.Ginger.Common.Enums.eRunStatus)value;
                 switch (status)
                 {
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Passed:
                         ico = eImageType.Passed;
                         break;
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Failed:
                         ico = eImageType.Failed;
                         break;
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Running:
                         ico = eImageType.Running;
                         break;
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Pending:
                         ico = eImageType.Pending;
                         break;
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Stopped:
                         ico = eImageType.Stopped;
                         break;
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Blocked:
                         ico = eImageType.Blocked;
                         break;
-                    case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped:
+                    case Amdocs.Ginger.Common.Enums.eRunStatus.Skipped:
                         ico = eImageType.Skipped;
                         break;
                     default:

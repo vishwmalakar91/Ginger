@@ -288,7 +288,7 @@ namespace GingerCore.Actions
                         {
                             if (!VerifyFTPConnected())
                             {
-                                this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 this.Error = "Failed to login!";
                                 return;
                             }
@@ -298,7 +298,7 @@ namespace GingerCore.Actions
                             }
                             else
                             {
-                                this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 this.Error = "'" + drvUnixPath + "' path does not exists";
                                 return;
                             }
@@ -332,14 +332,14 @@ namespace GingerCore.Actions
 
                             if(!File.Exists(sPCPath+targetFileName))
                             {
-                                this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 this.Error = "GET File action failed on '"+ targetFileName + "' "+ sPCPath + "\\" + " directory";
                             }
                             this.ExInfo = "GetFile action Success on path "+ sPCPath;
                         }
                         catch (Exception e)
                         {
-                            this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                             this.Error = e.Message;
                             Reporter.ToLog(eLogLevel.ERROR, e.Message);
                         }
@@ -396,7 +396,7 @@ namespace GingerCore.Actions
                         }
                         catch(Exception e)
                         {
-                            this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                             this.Error = e.Message;
 	                        Reporter.ToLog(eLogLevel.ERROR, e.Message);
                         }
@@ -420,7 +420,7 @@ namespace GingerCore.Actions
             string targetFileName = sPCPath.Substring(sPCPath.LastIndexOf("\\") + 1);
             if (!UnixFTPClient.Exists(UnixTargetFilePath + targetFileName))
             {
-                this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 this.Error = "Put File failed on '" + targetFileName + "' to " + UnixTargetFilePath + "\\";
             }
         }

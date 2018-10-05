@@ -295,13 +295,13 @@ namespace Ginger.BusinessFlowFolder
             {
                 string status = value.ToString();
                 
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running.ToString())) return Brushes.Purple;
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed.ToString())) return App.Current.TryFindResource("$PassedStatusColor") as SolidColorBrush;
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString())) return App.Current.TryFindResource("$FailedStatusColor") as SolidColorBrush;
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending.ToString())) return App.Current.TryFindResource("$PendingStatusColor") as SolidColorBrush;
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked.ToString())) return App.Current.TryFindResource("$BlockedStatusColor") as SolidColorBrush;
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped.ToString())) return App.Current.TryFindResource("$StoppedStatusColor") as SolidColorBrush;
-                if (status.Equals(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped.ToString())) return App.Current.TryFindResource("$SkippedStatusColor") as SolidColorBrush;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Running.ToString())) return Brushes.Purple;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Passed.ToString())) return App.Current.TryFindResource("$PassedStatusColor") as SolidColorBrush;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString())) return App.Current.TryFindResource("$FailedStatusColor") as SolidColorBrush;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Pending.ToString())) return App.Current.TryFindResource("$PendingStatusColor") as SolidColorBrush;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Blocked.ToString())) return App.Current.TryFindResource("$BlockedStatusColor") as SolidColorBrush;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Stopped.ToString())) return App.Current.TryFindResource("$StoppedStatusColor") as SolidColorBrush;
+                if (status.Equals(Amdocs.Ginger.Common.Enums.eRunStatus.Skipped.ToString())) return App.Current.TryFindResource("$SkippedStatusColor") as SolidColorBrush;
                 
                 return Brushes.Gray;
             }

@@ -152,7 +152,7 @@ namespace Ginger
         //End
         private Dictionary<string, Int32> _exceptionsDic = new Dictionary<string, int>();
 
-        public static Amdocs.Ginger.CoreNET.Execution.eRunStatus RunSetExecutionStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+        public static Amdocs.Ginger.Common.Enums.eRunStatus RunSetExecutionStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
         /// <summary>
         /// Hold all Run Set execution data + execution methods
         /// </summary>        

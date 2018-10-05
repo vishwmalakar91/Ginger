@@ -18,11 +18,11 @@ limitations under the License.
 
 using Amdocs.Ginger.Common;
 using Amdocs.Ginger.Repository;
+using Amdocs.Ginger.Repository.Variables;
 using GingerCore.Actions;
 using GingerCore.Activities;
 using GingerCore.DataSource;
 using GingerCore.GeneralLib;
-using GingerCore.Variables;
 using GingerCore.XMLConverters;
 using GingerCoreNET.SolutionRepositoryLib.RepositoryObjectsLib.PlatformsLib;
 using System;

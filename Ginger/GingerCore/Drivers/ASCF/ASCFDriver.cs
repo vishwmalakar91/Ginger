@@ -469,11 +469,11 @@ namespace GingerCore.Drivers.ASCF
                             // Inject Ginger Helper
                             // CheckInjectGingerHTMLHelper();
 
-                            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;                            
+                            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;                            
                         }
                         else
                         {
-                            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                             act.Error = "Browser Control not Found";
                             mBrowserLocateValue = null;
                         }
@@ -515,7 +515,7 @@ namespace GingerCore.Drivers.ASCF
             act.ExInfo += "Script=" + script;
             string RC = Send("InvokeScript", mBrowserLocateBy.ToString(), mBrowserLocateValue, NA, script, false);
             SetActionStatus(act, RC);
-            if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
                 act.AddOrUpdateReturnParamActual(act.GetOrCreateInputParam("Value").Param, act.ExInfo);
             }
@@ -571,7 +571,7 @@ namespace GingerCore.Drivers.ASCF
         {
             String RC = Send("GetMsgboxText", actmsg.LocateBy.ToString(), actmsg.LocateValueCalculated, NA, NA, false);
             SetActionStatus(actmsg, RC);
-            if (actmsg.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (actmsg.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
                 string output = null;
                 if (actmsg.ExInfo.StartsWith("OK|"))
@@ -611,14 +611,14 @@ namespace GingerCore.Drivers.ASCF
                     RC = Send(action, AAC.LocateBy.ToString(), AAC.LocateValueCalculated, AAC.ControlProperty.ToString(), string.Empty, false);
                     SetActionStatus(AAC, RC);
                     //Configuring IsVisible to always show Pass status so users will use it "Actual" return value to do Flow Control Decisions
-                    if (AAC.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                    if (AAC.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                     {
                         AAC.ExInfo = string.Empty;
                         AAC.AddOrUpdateReturnParamActual("Actual", "True");
                     }
                     else
                     {
-                        AAC.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                        AAC.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                         AAC.Error = string.Empty;
                         AAC.ExInfo = string.Empty;
                         AAC.AddOrUpdateReturnParamActual("Actual", "False");
@@ -642,14 +642,14 @@ namespace GingerCore.Drivers.ASCF
                     RC = Send(action, AAC.LocateBy.ToString(), AAC.LocateValueCalculated, AAC.ControlProperty.ToString(), AAC.GetOrCreateInputParam("Value").Value, false);
                     SetActionStatus(AAC, RC);
                     //TODO: fixme temp ugly too...
-                    if (AAC.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed && AAC.ControlProperty == ActASCFControl.eControlProperty.DateTimeValue)
+                    if (AAC.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed && AAC.ControlProperty == ActASCFControl.eControlProperty.DateTimeValue)
                     {
                         // in case of datetime we convert it from unix time
                         string uxtime = AAC.ExInfo.Substring(3);
                         string val = UnixTimetoDateTimeLocalString(uxtime);
                         AAC.ExInfo = val;
                     }
-                    if (AAC.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                    if (AAC.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                     {
                         string val = AAC.ExInfo.Substring(3);
                         AAC.AddOrUpdateReturnParamActual(AAC.GetOrCreateInputParam("Value").Param, val);
@@ -809,11 +809,11 @@ namespace GingerCore.Drivers.ASCF
         {
             if (RC.StartsWith("OK"))
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
             }            
             else
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 act.Error = "Error RC=" + RC;
             }
             act.ExInfo += RC;

@@ -142,31 +142,31 @@ namespace GingerCore.ALM.QC
                                         {
                                             switch(matchingActivity.Status)
                                             {
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Failed:
                                                     step.Status = "Failed";
-                                                    List<Act> failedActs= matchingActivity.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).ToList();
+                                                    List<Act> failedActs= matchingActivity.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).ToList();
                                                     string errors = string.Empty;
                                                     foreach (Act act in failedActs) errors += act.Error + Environment.NewLine;
                                                     step["ST_ACTUAL"] = errors;
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.NA:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.NA:
                                                     step.Status = "N/A";
                                                     step["ST_ACTUAL"] = "NA";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Passed:
                                                     step.Status = "Passed";
                                                     step["ST_ACTUAL"] = "Passed as expected";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Skipped:
                                                     //step.Status = "No Run";
                                                     step.Status = "N/A";
                                                     step["ST_ACTUAL"] = "Skipped";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Pending:
                                                     step.Status = "No Run";
                                                     step["ST_ACTUAL"] = "Was not executed";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Running:
                                                     step.Status = "Not Completed";
                                                     step["ST_ACTUAL"] = "Not Completed";
                                                     break;

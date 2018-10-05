@@ -652,12 +652,12 @@ namespace GingerCore.Drivers.Appium
                 }
      
                 act.Error = "Run Action Failed due to unrecognized action type: '" + ActType.ToString() + "'";
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
             catch(Exception ex)
             {
                 act.Error = "Run Action Failed, Error details: " + ex.Message;
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
         }
         private void GenElementHandler(ActGenElement act)
@@ -986,7 +986,7 @@ namespace GingerCore.Drivers.Appium
             try
             {
                 ActScreenShot actss = (ActScreenShot)act;
-                if (actss.WindowsToCapture == Act.eWindowsToCapture.OnlyActiveWindow && actss.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                if (actss.WindowsToCapture == Act.eWindowsToCapture.OnlyActiveWindow && actss.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     createScreenShot(act);
                 }

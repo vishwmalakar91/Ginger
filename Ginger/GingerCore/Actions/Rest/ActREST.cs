@@ -463,7 +463,7 @@ namespace GingerCore.Actions.REST
                     this.ExInfo = WE.Message;
                     if (DoNotFailActionOnBadRespose != true)
                     {
-                    base.Status=Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    base.Status=Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     base.Error = WE.Message;
                 }
                   
@@ -641,7 +641,7 @@ namespace GingerCore.Actions.REST
 
 
                 this.ExInfo = WEx.Message;
-                base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 base.Error = WEx.Message;
             }
 

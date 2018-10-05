@@ -155,7 +155,7 @@ namespace GingerCore.Drivers.ConsoleDriverLib
                         if (mExpString != null && sRC.Contains(mExpString) == false)
                         {
                             act.Error = @"Expected String """ + mExpString + @""" not found in command output";
-                            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                             return;
                         }
 

@@ -569,13 +569,13 @@ namespace Ginger.Reports.GingerExecutionReport
                     else
                     {
                         bool firstIteration = true;
-                        foreach (GingerReport GR in ((RunSetReport)RI.ReportInfoRootObject).GingerReports.Where(x => x.GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).OrderBy(x => x.Seq))
+                        foreach (GingerReport GR in ((RunSetReport)RI.ReportInfoRootObject).GingerReports.Where(x => x.GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).OrderBy(x => x.Seq))
                         {
-                            foreach (BusinessFlowReport br in GR.BusinessFlowReports.Where(x => x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString()))
+                            foreach (BusinessFlowReport br in GR.BusinessFlowReports.Where(x => x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString()))
                             {
-                                foreach (ActivityReport ac in br.Activities.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString()).OrderBy(x => x.Seq))
+                                foreach (ActivityReport ac in br.Activities.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString()).OrderBy(x => x.Seq))
                                 {
-                                    foreach (ActionReport act in ac.ActionReports.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString()).OrderBy(x => x.Seq))
+                                    foreach (ActionReport act in ac.ActionReports.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString()).OrderBy(x => x.Seq))
                                     {
                                         isFailuresDetailsExists = true;
 

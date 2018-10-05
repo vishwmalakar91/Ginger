@@ -476,12 +476,12 @@ namespace GingerCore.Drivers.AndroidADB
 
 
                 act.Error = "Run Action Failed due to unrecognized action type: '" + ActType.ToString() + "'";
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
             catch(Exception ex)
             {
                 act.Error = "Run Action Failed, Error details: " + ex.Message;
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
         }
 

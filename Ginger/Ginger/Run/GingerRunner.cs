@@ -260,8 +260,8 @@ namespace Ginger.Run
             }
         }
 
-        public Amdocs.Ginger.CoreNET.Execution.eRunStatus mStatus;
-        public Amdocs.Ginger.CoreNET.Execution.eRunStatus Status
+        public Amdocs.Ginger.Common.Enums.eRunStatus mStatus;
+        public Amdocs.Ginger.Common.Enums.eRunStatus Status
         {
             get { return mStatus; }
             set
@@ -333,37 +333,37 @@ namespace Ginger.Run
         [IsSerializedForLocalRepository]
         public ObservableList<BusinessFlowRun> BusinessFlowsRunList = new ObservableList<BusinessFlowRun>();
 
-        public Amdocs.Ginger.CoreNET.Execution.eRunStatus RunsetStatus
+        public Amdocs.Ginger.Common.Enums.eRunStatus RunsetStatus
         {
             get
             {
                 if (BusinessFlows.Count() == 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                 }
-                else if ((from x in BusinessFlows where x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped select x).Count() > 0)
+                else if ((from x in BusinessFlows where x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                 }
-                else if ((from x in BusinessFlows where x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed select x).Count() > 0)
+                else if ((from x in BusinessFlows where x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 }
-                else if ((from x in BusinessFlows where x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked select x).Count() > 0)
+                else if ((from x in BusinessFlows where x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                 }
-                else if (((from x in BusinessFlows where (x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped) select x).Count() == BusinessFlows.Count) && BusinessFlows.Count > 0)
+                else if (((from x in BusinessFlows where (x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped) select x).Count() == BusinessFlows.Count) && BusinessFlows.Count > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                 }
-                else if (((from x in BusinessFlows where (x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed || x.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped) select x).Count() == BusinessFlows.Count)&& BusinessFlows.Count>0)
+                else if (((from x in BusinessFlows where (x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed || x.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped) select x).Count() == BusinessFlows.Count)&& BusinessFlows.Count>0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 }
                 else
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                 }
             }
         }
@@ -408,7 +408,7 @@ namespace Ginger.Run
                     return;                
                 OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.RunnerRunStart, null);
                 //Init 
-                Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Started;
+                Status = Amdocs.Ginger.Common.Enums.eRunStatus.Started;
                 mIsRunning = true;
                 mStopRun = false;
                 if (doContinueRun == false)
@@ -427,7 +427,7 @@ namespace Ginger.Run
                     UpdateApplicationAgents();
 
                 //Start execution
-                Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running;
+                Status = Amdocs.Ginger.Common.Enums.eRunStatus.Running;
 
                 int startingBfIndx = 0;
                 if (doContinueRun == false)
@@ -478,7 +478,7 @@ namespace Ginger.Run
                     }
                     //Call For Business Flow Control
                     flowControlIndx = DoBusinessFlowControl(executedBusFlow);
-                    if (flowControlIndx == null && executedBusFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed) //stop if needed based on current BF failure
+                    if (flowControlIndx == null && executedBusFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed) //stop if needed based on current BF failure
                     {
                         if ((executedBusFlow.Mandatory == true) || (executedBusFlow.Mandatory == false & RunOption == eRunOptions.StopAllBusinessFlows))
                         {
@@ -507,7 +507,7 @@ namespace Ginger.Run
                         CloseAgents();
                         if (ProjEnvironment != null)
                             ProjEnvironment.CloseEnvironment();
-                        Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Completed;
+                        Status = Amdocs.Ginger.Common.Enums.eRunStatus.Completed;
                     }
                     PostScopeVariableHandling(BusinessFlow.SolutionVariables);
                     mIsRunning = false;
@@ -720,11 +720,11 @@ namespace Ginger.Run
                 RunActionWithRetryMechanism(act, checkIfActionAllowedToRun);
                 if (act.EnableRetryMechanism & mStopRun == false)
                 {
-                    while (act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed && act.RetryMechanismCount < act.MaxNumberOfRetries & mStopRun == false)
+                    while (act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed && act.RetryMechanismCount < act.MaxNumberOfRetries & mStopRun == false)
                     {
                         //Wait
                         act.RetryMechanismCount++;
-                        act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Wait;
+                        act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Wait;
                         if (GiveUserFeedback) OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.DoEventsRequired, null);
                         ProcessIntervaleRetry(act);
                         if (mStopRun)
@@ -735,7 +735,7 @@ namespace Ginger.Run
                 }
                 if (mStopRun)
                 {
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                     //To Handle Scenario which the Driver is still searching the element untill Implicity wait will be done, lates being used on SeleniumDriver.Isrunning method 
                     SetDriverPreviousRunStoppedFlag(true);
                 }
@@ -775,7 +775,7 @@ namespace Ginger.Run
                         //To Handle Scenario which the Driver is still searching the element untill Implicity wait will be done, lates being used on SeleniumDriver.Isrunning method 
                         SetDriverPreviousRunStoppedFlag(false);
                     }
-                    UpdateActionStatus(act, Amdocs.Ginger.CoreNET.Execution.eRunStatus.Wait, st);
+                    UpdateActionStatus(act, Amdocs.Ginger.Common.Enums.eRunStatus.Wait, st);
                     Thread.Sleep(100);  // Multiply * 10 to get 1 sec                    
                 }
             }
@@ -800,7 +800,7 @@ namespace Ginger.Run
                     if (!act.Active)
                     {
                         ResetAction(act);
-                        act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                        act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                         act.ExInfo = "Action is not active.";
                         return;
                     }
@@ -826,7 +826,7 @@ namespace Ginger.Run
 
                 ExecutionLogger.ActionStart(CurrentBusinessFlow, CurrentBusinessFlow.CurrentActivity, act);
 
-                while (act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                while (act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                 {
                     RunActionWithTimeOutControl(act, ActionExecutorType);
                     CalculateActionFinalStatus(act);
@@ -838,7 +838,7 @@ namespace Ginger.Run
                     }
 
                     if (!mErrorHandlerExecuted
-                        && act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped && act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                        && act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Stopped && act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                     {
                         // returns list of mapped error handlers with the activity depending on type of error handling mapping chosen i.e. All Available Error Handlers, None or Specific Error Handlers
                         ObservableList<ErrorHandler> lstMappedErrorHandlers = GetErrorHandlersForCurrentActivity();
@@ -847,7 +847,7 @@ namespace Ginger.Run
                             break;
 
                         ResetAction(act);
-                        act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running;
+                        act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Running;
                         OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.ActionStart, null);
                         executeErrorAndPopUpHandler(lstMappedErrorHandlers);
                         mErrorHandlerExecuted = true;
@@ -888,7 +888,7 @@ namespace Ginger.Run
                 act.ElapsedTicks = st.ElapsedTicks;
 
                 //check if we have retry mechanism if yes go till max
-                if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed && act.EnableRetryMechanism && act.RetryMechanismCount < act.MaxNumberOfRetries)
+                if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed && act.EnableRetryMechanism && act.RetryMechanismCount < act.MaxNumberOfRetries)
                 {
                     //since we retrun and don't do flow control the action is going to run again
                     ExecutionLogger.ActionEnd(CurrentBusinessFlow.CurrentActivity, act);
@@ -1238,14 +1238,14 @@ namespace Ginger.Run
                         act.ExInfo += "Stopped";
                         return;
                     }
-                    UpdateActionStatus(act, Amdocs.Ginger.CoreNET.Execution.eRunStatus.Wait, st);
+                    UpdateActionStatus(act, Amdocs.Ginger.Common.Enums.eRunStatus.Wait, st);
                     Thread.Sleep(100);               
                 }
             }
         }
         
 
-        private void UpdateActionStatus(Act act, Amdocs.Ginger.CoreNET.Execution.eRunStatus eStatus, Stopwatch st)
+        private void UpdateActionStatus(Act act, Amdocs.Ginger.Common.Enums.eRunStatus eStatus, Stopwatch st)
         {
             act.Status = eStatus;
             act.Elapsed = st.ElapsedMilliseconds;
@@ -1297,7 +1297,7 @@ namespace Ginger.Run
 
             if (mStopRun)
             {
-                UpdateActionStatus(act, Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped, st);
+                UpdateActionStatus(act, Amdocs.Ginger.Common.Enums.eRunStatus.Stopped, st);
                 //To Handle Scenario which the Driver is still searching the element untill Implicity wait will be done, lates being used on SeleniumDriver.Isrunning method 
                 SetDriverPreviousRunStoppedFlag(true);
                 return;
@@ -1307,7 +1307,7 @@ namespace Ginger.Run
                 //To Handle Scenario which the Driver is still searching the element untill Implicity wait will be done, lates being used on SeleniumDriver.Isrunning method 
                 SetDriverPreviousRunStoppedFlag(false);
             }
-            UpdateActionStatus(act, Amdocs.Ginger.CoreNET.Execution.eRunStatus.Started, st);
+            UpdateActionStatus(act, Amdocs.Ginger.Common.Enums.eRunStatus.Started, st);
 
             //No need for agent for some actions like DB and read for excel 
             if ((RunInSimulationMode) && (act.SupportSimulation))
@@ -1327,7 +1327,7 @@ namespace Ginger.Run
             PrepActionVE(act);
 
 
-            UpdateActionStatus(act, Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running, st);
+            UpdateActionStatus(act, Amdocs.Ginger.Common.Enums.eRunStatus.Running, st);
             if (GiveUserFeedback) OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.DoEventsRequired, null);
 
         }
@@ -1365,11 +1365,11 @@ namespace Ginger.Run
         {
             string msg = string.Empty;
 
-            if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped) return;//user stopped it so no need screen shot
+            if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped) return;//user stopped it so no need screen shot
 
             if (ActionExecutorType == eActionExecutorType.RunOnDriver)
             {
-                    if (act.TakeScreenShot || act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                    if (act.TakeScreenShot || act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                     {
                     try
                     {
@@ -1383,7 +1383,7 @@ namespace Ginger.Run
                             ASS.LocateBy = eLocateBy.NA;
                             ASS.WindowsToCapture = act.WindowsToCapture;
 
-                            if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                            if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                                 ASS.WindowsToCapture = ActScreenShot.eWindowsToCapture.AllAvailableWindows;
                             Agent a = CurrentBusinessFlow.CurrentActivity.CurrentAgent;
                             if (a == null)
@@ -1421,7 +1421,7 @@ namespace Ginger.Run
                     }
                 }
             }
-            else if (act.TakeScreenShot && act.WindowsToCapture == Act.eWindowsToCapture.DesktopScreen || act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+            else if (act.TakeScreenShot && act.WindowsToCapture == Act.eWindowsToCapture.DesktopScreen || act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
             {
                 TakeDesktopScreenShotIntoAction(act);
             }
@@ -1526,7 +1526,7 @@ namespace Ginger.Run
                                 {
                                     if (string.IsNullOrEmpty(act.Error))
                                         act.Error = "No Agent was found for the" + GingerDicser.GetTermResValue(eTermResKey.Activity) + " Application.";
-                                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 }
                                 else if (currentAgent.Status != Agent.eStatus.Running)
                                 {
@@ -1542,7 +1542,7 @@ namespace Ginger.Run
                                         }
                                     }
 
-                                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 }
                                 else
                                 {
@@ -1576,7 +1576,7 @@ namespace Ginger.Run
                 }
                 else
                 {
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Cancelling;
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Cancelling;
                     act.Error += "Timeout Occurred, Elapsed > " + act.Timeout;
                     if (GiveUserFeedback) OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.DoEventsRequired, null);
                 }
@@ -1596,7 +1596,7 @@ namespace Ginger.Run
             }
             catch (Exception e)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 act.Error = e.Message + Environment.NewLine + e.InnerException;
             }
             finally
@@ -1651,7 +1651,7 @@ namespace Ginger.Run
 
                     if (mStopRun)
                     {
-                        act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                        act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                         act.ExInfo += "Stopped";
                         //To Handle Scenario which the Driver is still searching the element untill Implicity wait will be done, lates being used on SeleniumDriver.Isrunning method 
                         //TODO: J.G: Enhance the mechanism to notify the Driver that action is stopped. Today driver still running the action unitl timeout even after stopping it.
@@ -1798,7 +1798,7 @@ namespace Ginger.Run
             }
             catch (Exception ex)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 if (string.IsNullOrEmpty(act.Error))
                     act.Error = ex.Message;
             }
@@ -2049,7 +2049,7 @@ namespace Ginger.Run
                                     FC.Status = FlowControl.eStatus.Action_Execution_Failed;
                                 break;
                             case FlowControl.eFlowControlAction.RerunAction:
-                                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                                 IsStopLoop = true;
                                 break;
                             case FlowControl.eFlowControlAction.RerunActivity:
@@ -2065,7 +2065,7 @@ namespace Ginger.Run
                                 IsStopLoop = true;
                                 break;
                             case FlowControl.eFlowControlAction.FailActionAndStopBusinessFlow:
-                                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 act.Error = "Failed due to Flow Control rule";
                                 act.ExInfo += FC.ConditionCalculated;
                                 mStopBusinessFlow = true;
@@ -2150,7 +2150,7 @@ namespace Ginger.Run
                             if (!mStopRun)
                             {
                                 GotoNextAction();
-                                ((Act)CurrentBusinessFlow.CurrentActivity.Acts.CurrentItem).Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                                ((Act)CurrentBusinessFlow.CurrentActivity.Acts.CurrentItem).Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                             }
                         }
                     }
@@ -2188,7 +2188,7 @@ namespace Ginger.Run
             if (a != null)
             {
                 CurrentBusinessFlow.CurrentActivity.Acts.CurrentItem = a;
-                a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                 return true;
             }
             else
@@ -2242,21 +2242,21 @@ namespace Ginger.Run
 
         public void CalculateActivityFinalStatus(Activity a)
         {
-            a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+            a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
 
             //if there is one fail then Activity status is fail
-            if (a.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped).FirstOrDefault() != null)   //
-                a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
-            else if (a.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).FirstOrDefault() != null)
-                a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
-            else if (a.Acts.Count > 0 && a.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked).ToList().Count == a.Acts.Count)
-                a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+            if (a.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped).FirstOrDefault() != null)   //
+                a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
+            else if (a.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).FirstOrDefault() != null)
+                a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
+            else if (a.Acts.Count > 0 && a.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked).ToList().Count == a.Acts.Count)
+                a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
             else
             {
                 // If we have at least 1 pass then it passed, otherwise will remain Skipped
-                if (a.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed).FirstOrDefault() != null)
+                if (a.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed).FirstOrDefault() != null)
                 {
-                    a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                    a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 }
             }
         }
@@ -2299,7 +2299,7 @@ namespace Ginger.Run
         public void CalculateActionFinalStatus(Act act)
         {
             // Action pass if no error/exception and Expected = Actual
-            if (!string.IsNullOrEmpty(act.Error) || act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+            if (!string.IsNullOrEmpty(act.Error) || act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
             {
                 //Adding Act.Error param to store error in Actual or variable
                 // If the flow has been stopped , stop adding the list of Return values in the action 
@@ -2328,8 +2328,8 @@ namespace Ginger.Run
                     }
                 }
 
-                if (act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                if (act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 return;
             }
             
@@ -2386,16 +2386,16 @@ namespace Ginger.Run
             int CountFail = (from x in act.ReturnValues where x.Status == ActReturnValue.eStatus.Failed select x).Count();
             if (CountFail > 0)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
 
-            if (act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed && act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Failed && act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
             }
-            else if (act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            else if (act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
         }
 
@@ -2407,21 +2407,21 @@ namespace Ginger.Run
             }
             if (act.StatusConverter == Act.eStatusConverterOptions.AlwaysPass)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
             }
-            else if (act.StatusConverter == Act.eStatusConverterOptions.IgnoreFail && act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+            else if (act.StatusConverter == Act.eStatusConverterOptions.IgnoreFail && act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.FailIgnored;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.FailIgnored;
             }
             else if (act.StatusConverter == Act.eStatusConverterOptions.InvertStatus)
             {
-                if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                 {
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 }
-                else if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                else if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 }
             }
         }
@@ -2599,7 +2599,7 @@ namespace Ginger.Run
             {
                 // since we are in continue mode - only for first activity of continue mode
                 // Just change the status to Pending
-                CurrentBusinessFlow.CurrentActivity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                CurrentBusinessFlow.CurrentActivity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
 
                 ContinueTimerVariables(CurrentBusinessFlow.CurrentActivity.Variables);
             }
@@ -2616,7 +2616,7 @@ namespace Ginger.Run
             mCurrentActivityChanged = false;
 
             //Run the Activity
-            CurrentBusinessFlow.CurrentActivity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running;
+            CurrentBusinessFlow.CurrentActivity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Running;
             OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.ActivityStart, null);
             if (SolutionApplications != null && SolutionApplications.Where(x => (x.AppName == Activity.TargetApplication && x.Platform == ePlatformType.NA)).FirstOrDefault() == null)
             {
@@ -2663,9 +2663,9 @@ namespace Ginger.Run
                         if (mCurrentActivityChanged)
                         {
                             CurrentBusinessFlow.CurrentActivity.Elapsed = st.ElapsedMilliseconds;
-                            if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                            if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                             {
-                                Activity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                Activity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
 
                                 if (Activity.ActionRunOption == Activity.eActionRunOption.StopActionsRunOnFailure && act.FlowControls.Count == 0)
                                 {
@@ -2679,9 +2679,9 @@ namespace Ginger.Run
                         CurrentBusinessFlow.CurrentActivity.Elapsed = st.ElapsedMilliseconds;
                         // This Sleep is needed!
                         Thread.Sleep(1);
-                        if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                        if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                         {
-                            Activity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            Activity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
 
                             if (Activity.ActionRunOption == Activity.eActionRunOption.StopActionsRunOnFailure && act.FlowControls.Count == 0)
                             {
@@ -2710,19 +2710,19 @@ namespace Ginger.Run
                         if (!act.Active)
                         {
                             ResetAction(act);
-                            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                             act.ExInfo = "Action is not active.";
                         }
                         if (!Activity.Acts.IsLastItem())
                         {
                             GotoNextAction();
-                            ((Act)CurrentBusinessFlow.CurrentActivity.Acts.CurrentItem).Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                            ((Act)CurrentBusinessFlow.CurrentActivity.Acts.CurrentItem).Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                         }
                     }
 
                     act = (Act)CurrentBusinessFlow.CurrentActivity.Acts.CurrentItem;
                     // As long as we have more action we keep the loop, until no more actions available
-                    if (act.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending && Activity.Acts.IsLastItem())
+                    if (act.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Pending && Activity.Acts.IsLastItem())
                     {
                         bHasMoreActions = false;
                     }
@@ -2897,7 +2897,7 @@ namespace Ginger.Run
                                     act.Reset();
                             }
                             activity.Elapsed = null;
-                            activity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                            activity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                             continue;
                         }
                         if (resetFromActivity && resetFromAction)
@@ -3003,7 +3003,7 @@ namespace Ginger.Run
                     }
                 }
 
-                CurrentBusinessFlow.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running;
+                CurrentBusinessFlow.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Running;
                 OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.BusinessFlowStart, null);
                 mStopBusinessFlow = false;
                 CurrentBusinessFlow.Elapsed = null;                
@@ -3049,7 +3049,7 @@ namespace Ginger.Run
                     }
                     else
                     {
-                        ExecutingActivity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running;
+                        ExecutingActivity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Running;
                         if (GiveUserFeedback) OnGingerRunnerEvent(GingerRunnerEventArgs.eEventType.DoEventsRequired, null);
                         if (ExecutingActivity.Active != false)
                         {
@@ -3065,10 +3065,10 @@ namespace Ginger.Run
                             //TODO: Why this is here? do we need to rehook
                             CurrentBusinessFlow.PropertyChanged -= CurrentBusinessFlow_PropertyChanged;
 
-                            if (ExecutingActivity.Mandatory && ExecutingActivity.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                            if (ExecutingActivity.Mandatory && ExecutingActivity.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                             {
                                 //CurrentBusinessFlow.Elapsed = st.ElapsedMilliseconds;
-                                CurrentBusinessFlow.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                                CurrentBusinessFlow.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                                 if (!(CurrentBusinessFlow.Activities.IsLastItem()))
                                 {
                                     GotoNextActivity();
@@ -3079,7 +3079,7 @@ namespace Ginger.Run
                         }
                         else
                         {
-                            ExecutingActivity.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                            ExecutingActivity.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                         }
 
                         if (mStopRun || mStopBusinessFlow)
@@ -3087,7 +3087,7 @@ namespace Ginger.Run
                             //CurrentBusinessFlow.Elapsed = st.ElapsedMilliseconds;
                             SetBusinessFlowActivitiesAndActionsSkipStatus();
                             SetActivityGroupsExecutionStatus();
-                            CurrentBusinessFlow.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                            CurrentBusinessFlow.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                             return;
                         }
 
@@ -3167,34 +3167,34 @@ namespace Ginger.Run
             bool Stopped = false;
 
             // Assume pass unless error
-            BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+            BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
 
             if (BF.Activities.Count == 0 ||
-                BF.Activities.Where(x=>x.GetType()== typeof(Activity) && x.Status== Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped).ToList().Count == BF.Activities.Where(x => x.GetType() == typeof(Activity)).ToList().Count)               
+                BF.Activities.Where(x=>x.GetType()== typeof(Activity) && x.Status== Amdocs.Ginger.Common.Enums.eRunStatus.Skipped).ToList().Count == BF.Activities.Where(x => x.GetType() == typeof(Activity)).ToList().Count)               
             {
-                BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                 return;
             }
 
             if (considrePendingAsSkipped &&
-                BF.Activities.Where(x => x.GetType() == typeof(Activity) && x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending).ToList().Count == BF.Activities.Where(x => x.GetType() == typeof(Activity)).ToList().Count)
+                BF.Activities.Where(x => x.GetType() == typeof(Activity) && x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending).ToList().Count == BF.Activities.Where(x => x.GetType() == typeof(Activity)).ToList().Count)
             {
-                BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                 return;
             }
             foreach (Activity a in BF.Activities.Where(a => a.GetType() != typeof(ErrorHandler)))
             {
-                if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+                if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
                 {
                     Stopped = true;
                     break;
                 }
-                else if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                else if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     Failed = true;
                     
                 }
-                else if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked)
+                else if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked)
                 {
                     Blocked = true;
                 }
@@ -3202,19 +3202,19 @@ namespace Ginger.Run
            
             if (Stopped) 
             {
-                BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
             }
             else if(Failed)
             {
-                BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
             else if(Blocked)
             {
-                BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
             }
             else
             {
-                BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
             }
         }
 
@@ -3233,7 +3233,7 @@ namespace Ginger.Run
             
 
             if (AG.ActivitiesIdentifiers.Count == 0 ||
-            AG.ActivitiesIdentifiers.Where(x => x.IdentifiedActivity.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped).ToList().Count == AG.ActivitiesIdentifiers.Count)
+            AG.ActivitiesIdentifiers.Where(x => x.IdentifiedActivity.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped).ToList().Count == AG.ActivitiesIdentifiers.Count)
             {
                 AG.RunStatus = ActivitiesGroup.eActivitiesGroupRunStatus.Skipped;
                 return;
@@ -3243,17 +3243,17 @@ namespace Ginger.Run
 
             foreach (Activity a in BF.Activities.Where(x => AG.ActivitiesIdentifiers.Select(z => z.ActivityGuid).ToList().Contains(x.Guid)).ToList())
             {
-                if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     //  Blocked = true;  // We assume from here on it i blocked
                     Failed = true;  // We found one failed activity so the flow is failed or blocked, to be decided at the end
                     break;
                 }
-                else if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked)
+                else if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked)
                 {
                     Blocked = true;
                 }
-                else if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+                else if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
                 {
                     Stopped = true;
                 }
@@ -3292,13 +3292,13 @@ namespace Ginger.Run
                     if (mStopRun)
                         break;
 
-                    if (avoidCurrentStatus || act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending)
-                        act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                    if (avoidCurrentStatus || act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending)
+                        act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                 }
 
-                if (avoidCurrentStatus || a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending)
+                if (avoidCurrentStatus || a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending)
                 {
-                    a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                    a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                 }
             }
         }
@@ -3349,12 +3349,12 @@ namespace Ginger.Run
 
         private void SetPendingBusinessFlowsSkippedStatus()
         {
-            foreach (BusinessFlow bf in BusinessFlows.Where(a => a.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending))
+            foreach (BusinessFlow bf in BusinessFlows.Where(a => a.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Pending))
             {
                 if (mStopRun)
                     break;
 
-                bf.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                bf.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
 
                 //bellow needed?
                 CurrentBusinessFlow = bf;
@@ -3368,14 +3368,14 @@ namespace Ginger.Run
 
         private void SetNextBusinessFlowsBlockedStatus()
         {
-            foreach (BusinessFlow bf in BusinessFlows.Where(a => a.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending))
+            foreach (BusinessFlow bf in BusinessFlows.Where(a => a.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Pending))
             {
                 if (mStopRun)
                     break;
 
                 if (bf.Active)
                 {
-                    bf.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                    bf.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                 }
                 CurrentBusinessFlow = bf;
                 CurrentBusinessFlow.CurrentActivity = bf.Activities.FirstOrDefault();
@@ -3395,22 +3395,22 @@ namespace Ginger.Run
 
                 if (a.Active & a.Acts.Count>0)
                 {
-                    a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                    a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                     foreach (Act act in a.Acts)
                     {
                         if (act.Active)
-                            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                     }
 
                 }
                 else
                 {
                     //If activity is not active, mark it as skipped
-                    a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                    a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                     foreach (Act act in a.Acts)
                     {
-                        if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending)
-                            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                        if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending)
+                            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                     }
                 }
                 if (CurrentBusinessFlow.Activities.IsLastItem())
@@ -3431,7 +3431,7 @@ namespace Ginger.Run
                 if (mStopRun)
                     break;
 
-                if (act.Active && act.Status!=Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed) act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                if (act.Active && act.Status!=Amdocs.Ginger.Common.Enums.eRunStatus.Failed) act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                 if (CurrentBusinessFlow.CurrentActivity.Acts.IsLastItem()) break;
 
                 else
@@ -3458,7 +3458,7 @@ namespace Ginger.Run
 
         public void ResetRunnerExecutionDetails(bool doNotResetBusFlows=false)
         {
-            Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+            Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
             mStopRun = false;
             mIsRunning = false;
             PublishToALMConfig = null;
@@ -3660,7 +3660,7 @@ namespace Ginger.Run
                 if (BF.Active)
                 {
                     if (!GetSummaryOnlyForExecutedFlow ||
-                        (GetSummaryOnlyForExecutedFlow && !(BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending || BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked)))
+                        (GetSummaryOnlyForExecutedFlow && !(BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Pending || BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked)))
                     {
                         var BFES = new BusinessFlowExecutionSummary();
                         BFES.BusinessFlowName = BF.Name;

@@ -63,15 +63,15 @@ namespace Ginger.Reports.Designer
         {
             BusinessFlow BF1 = new BusinessFlow() { Name = "BF1 - Create Customer", Description = "Create any type of customer: Business/Residential..." };
             BF1.Active = true;
-            BF1.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+            BF1.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
             BF1.Activities = new ObservableList<Activity>();
             BF1.Elapsed = 2364;
 
             //Activity 1
-            Activity a1 = new Activity() { ActivityName = "Launch Application & Login", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed };
+            Activity a1 = new Activity() { ActivityName = "Launch Application & Login", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed };
             BF1.Activities.Add(a1);
 
-            ActGotoURL act1 = new ActGotoURL() { Description = "Goto URL www.abcd.com", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed, Elapsed = 3124 };
+            ActGotoURL act1 = new ActGotoURL() { Description = "Goto URL www.abcd.com", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed, Elapsed = 3124 };
             a1.Acts.Add(act1);
 
             ActReturnValue ARV1 = new ActReturnValue();
@@ -80,33 +80,33 @@ namespace Ginger.Reports.Designer
             ARV1.Actual = "123";
             ARV1.Status = ActReturnValue.eStatus.Passed;
             act1.ReturnValues.Add(ARV1);
-            ActTextBox act2 = new ActTextBox() { Description = "Enter User ID", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed, Elapsed = 230 };
+            ActTextBox act2 = new ActTextBox() { Description = "Enter User ID", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed, Elapsed = 230 };
             // Add sample screen shot
             Bitmap tempBmp = new Bitmap(Ginger.Properties.Resources.ScreenShot1);
             act2.ScreenShots.Add(GingerCore.General.BitmapImageToFile(tempBmp));
             
             a1.Acts.Add(act2);
 
-            ActTextBox act3 = new ActTextBox() { Description = "Enter Password", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed, Elapsed = 112 };
+            ActTextBox act3 = new ActTextBox() { Description = "Enter Password", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed, Elapsed = 112 };
             a1.Acts.Add(act3);
 
-            ActSubmit act4 = new ActSubmit() { Description = "Click Submit Button", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed, Elapsed = 1282 };
+            ActSubmit act4 = new ActSubmit() { Description = "Click Submit Button", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed, Elapsed = 1282 };
             a1.Acts.Add(act4);
 
             //Activity 2
-            Activity a2 = new Activity() { ActivityName = "Create New customer", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed };
+            Activity a2 = new Activity() { ActivityName = "Create New customer", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed };
             BF1.Activities.Add(a2);
 
-            ActTextBox acta21 = new ActTextBox() { Description = "Enter First Name", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed, Elapsed = 325 };
+            ActTextBox acta21 = new ActTextBox() { Description = "Enter First Name", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed, Elapsed = 325 };
             a2.Acts.Add(acta21);
 
-            ActTextBox acta22 = new ActTextBox() { Description = "Enter Last Name", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed, Elapsed = 302 };
+            ActTextBox acta22 = new ActTextBox() { Description = "Enter Last Name", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed, Elapsed = 302 };
             a2.Acts.Add(acta22);
 
-            ActTextBox acta23 = new ActTextBox() { Description = "Enter City", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed, Elapsed = 820, Error = "Error: Element not found by ID 'City'", ExInfo = "Cannot find element" };
+            ActTextBox acta23 = new ActTextBox() { Description = "Enter City", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed, Elapsed = 820, Error = "Error: Element not found by ID 'City'", ExInfo = "Cannot find element" };
             a2.Acts.Add(acta23);
 
-            ActSubmit acta24 = new ActSubmit() { Description = "Click Create Button", Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending };
+            ActSubmit acta24 = new ActSubmit() { Description = "Click Create Button", Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending };
             a2.Acts.Add(acta24);
 
             //Add Variables
@@ -121,7 +121,7 @@ namespace Ginger.Reports.Designer
             //Add a few simple BFs            
             BusinessFlow BF2 = new BusinessFlow() { Name = "BF2 - Customer Order Product", Description = "", Active = true };            
             BF2.Activities = new ObservableList<Activity>();
-            BF2.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+            BF2.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             BF2.Elapsed = 1249;
             
             ProjEnvironment env = new ProjEnvironment() { Name = "Env1" };

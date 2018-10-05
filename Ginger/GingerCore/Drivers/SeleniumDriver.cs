@@ -961,7 +961,7 @@ namespace GingerCore.Drivers
             }
 
             act.Error = "Run Action Failed due to unrecognized action type - " + ActType.ToString();
-            act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+            act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
         }
 
         private void ScreenshotHandler(ActScreenShot act)
@@ -2169,7 +2169,7 @@ namespace GingerCore.Drivers
             int y = 0;
             if (!Int32.TryParse(act.GetOrCreateInputParam(ActGenElement.Fields.Xoffset).ValueForDriver, out x) || !Int32.TryParse(act.GetOrCreateInputParam(ActGenElement.Fields.Yoffset).ValueForDriver, out y))
             {
-                act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 act.ExInfo = "Cannot Click by XY with String Value, X Value: " + act.GetOrCreateInputParam(ActGenElement.Fields.Xoffset).ValueForDriver + ", Y Value: " + act.GetOrCreateInputParam(ActGenElement.Fields.Yoffset).ValueForDriver + "  ";
             }
             if (e == null)
@@ -5691,7 +5691,7 @@ namespace GingerCore.Drivers
                     int y = 0;
                     if (!Int32.TryParse(act.GetOrCreateInputParam(ActGenElement.Fields.Xoffset).ValueForDriver, out x) || !Int32.TryParse(act.GetOrCreateInputParam(ActGenElement.Fields.Yoffset).ValueForDriver, out y))
                     {
-                        act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         act.ExInfo = "Cannot Click by XY with String Value, X Value: " + act.GetOrCreateInputParam(ActGenElement.Fields.Xoffset).ValueForDriver + ", Y Value: " + act.GetOrCreateInputParam(ActGenElement.Fields.Yoffset).ValueForDriver + "  ";
                     }
                     OpenQA.Selenium.Interactions.Actions actionClick = new OpenQA.Selenium.Interactions.Actions(Driver);

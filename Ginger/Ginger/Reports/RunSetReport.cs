@@ -189,29 +189,29 @@ namespace Ginger.Reports
             }
         }
 
-        public Amdocs.Ginger.CoreNET.Execution.eRunStatus RunSetExecutionStatus
+        public Amdocs.Ginger.Common.Enums.eRunStatus RunSetExecutionStatus
         {
             get
             {
                 if (TotalGingerRunnersFailed > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 }
                 else if ((from x in GingerReports where x.IsBlocked == true select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                 }
                 else if ((from x in GingerReports where x.IsStopped == true select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                 }
                 else if ((from x in GingerReports where (x.IsPassed == true || x.IsSkipped == true) select x).Count() == TotalGingerRunners)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 }
                 else
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                 }
             }
         }

@@ -18,6 +18,7 @@ limitations under the License.
 
 using System;
 using System.Collections.Generic;
+using Amdocs.Ginger.Common;
 using GingerCore.Actions;
 
 namespace GingerCore.Drivers.ScriptDriverLib

@@ -127,16 +127,16 @@ namespace Ginger.Reports
             paragraph.AddLineBreak();
             paragraph.AddFormattedText("Total " + GingerDicser.GetTermResValue(eTermResKey.Activities) + ": " + bf.Activities.Count);
             paragraph.AddLineBreak();
-            paragraph.AddFormattedText("Passed: " + bf.Activities.Where(p => p.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed).Count() + " Failed: "
-                + bf.Activities.Where(p => p.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).Count() + " Blocked: "
-                + bf.Activities.Where(p => p.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked).Count() + " Skipped: " + bf.Activities.Where(p => p.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped).Count());            
+            paragraph.AddFormattedText("Passed: " + bf.Activities.Where(p => p.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed).Count() + " Failed: "
+                + bf.Activities.Where(p => p.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).Count() + " Blocked: "
+                + bf.Activities.Where(p => p.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked).Count() + " Skipped: " + bf.Activities.Where(p => p.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped).Count());            
             paragraph.AddLineBreak();
             paragraph.AddLineBreak();
             paragraph.AddFormattedText("Total Actions: " + bf.Activities.Sum(p=>p.Acts.Count));
             paragraph.AddLineBreak();
-            paragraph.AddFormattedText("Passed:" + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed).Count()) + " Failed:"
-                + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).Count()) + " Blocked:"
-                + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked).Count()) + " Skipped:" + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped).Count()));            
+            paragraph.AddFormattedText("Passed:" + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed).Count()) + " Failed:"
+                + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).Count()) + " Blocked:"
+                + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked).Count()) + " Skipped:" + bf.Activities.Sum(p => p.Acts.Where(t => t.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped).Count()));            
             paragraph.AddLineBreak();
         }
 
@@ -481,8 +481,8 @@ namespace Ginger.Reports
                     addTable("#,0.60~!>Auto,0.65~!>Description,3.2~!>Value,4.3~!>Status,1.0~!>Elapsed,1~!>Error,3.5~!>ScreenShot,6");
                     //Allowing to define specific style to any cell according to it data             
                     string statusCellStyle = "";
-                    if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed) statusCellStyle = "RedStatusCellStyle";
-                    if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed) statusCellStyle = "GreenStatusCellStyle";
+                    if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed) statusCellStyle = "RedStatusCellStyle";
+                    if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed) statusCellStyle = "GreenStatusCellStyle";
                     addTableRow(Seq + "~!>" + act.Active + "~!>" + act.Description + "~!>" + act.GetInputParamCalculatedValue("Value", false) + "~!>" + statusCellStyle + "<#>" + act.Status + "~!>" + "RigthAliagnCellStyle" + "<#>" + Math.Round(Convert.ToDouble(act.ElapsedSecs), 1) + "~!>" + act.Error + "~!>");
                     
                     foreach(String path in act.ScreenShots)

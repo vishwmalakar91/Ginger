@@ -161,7 +161,7 @@ namespace Ginger.Reports
         public string RunStatus
         {
             get { return mActivity.Status.ToString(); }
-            set { mActivity.Status = (Amdocs.Ginger.CoreNET.Execution.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.CoreNET.Execution.eRunStatus), value); }
+            set { mActivity.Status = (Amdocs.Ginger.Common.Enums.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.Common.Enums.eRunStatus), value); }
         }
 
         [FieldParams]
@@ -181,7 +181,7 @@ namespace Ginger.Reports
         {
             get
             {
-                int count = (from x in ActionReports where x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed.ToString() select x).Count();
+                int count = (from x in ActionReports where x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed.ToString() select x).Count();
                 return count;
             }
         }
@@ -190,7 +190,7 @@ namespace Ginger.Reports
         {
             get
             {
-                int count = (from x in ActionReports where x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped.ToString() select x).Count();
+                int count = (from x in ActionReports where x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped.ToString() select x).Count();
                 return count;
             }
         }
@@ -199,7 +199,7 @@ namespace Ginger.Reports
         {
             get
             {
-                int count = (from x in ActionReports where x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString() select x).Count();
+                int count = (from x in ActionReports where x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString() select x).Count();
                 return count;
             }
         }

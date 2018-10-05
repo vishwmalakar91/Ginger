@@ -481,6 +481,7 @@
     <Compile Include="BusinessFlowWindows\BusinessFlowsAutomatePage.xaml.cs">
       <DependentUpon>BusinessFlowsAutomatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dictionaries\GingerDicserUI.cs" />
     <Compile Include="Environments\EnvironemntNameValidationRule.cs" />
     <Compile Include="Functionalities\FindItemType.cs" />
     <Compile Include="GeneralValidationRules\FileValidationRule.cs" />

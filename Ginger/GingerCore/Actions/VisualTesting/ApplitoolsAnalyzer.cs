@@ -136,7 +136,7 @@ namespace GingerCore.Actions.VisualTesting
             bool FailActionOnMistmach = Boolean.Parse(mAct.GetInputParamValue(ApplitoolsAnalyzer.FailActionOnMistmach));
             if (response.IsMatch == true || !FailActionOnMistmach)
             {
-                mAct.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                mAct.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 if (!FailActionOnMistmach)
                     mAct.ExInfo = "Created new baseline in Applitools or Mismatch between saved baseline and terget checkpoint image";
             }

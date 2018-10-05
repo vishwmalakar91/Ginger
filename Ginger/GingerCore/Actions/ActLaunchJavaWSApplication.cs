@@ -799,7 +799,7 @@ namespace GingerCore.Actions
             }
             catch (Exception ex)
             {
-                Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 Error = ex.Message;
             }
         }
@@ -827,7 +827,7 @@ namespace GingerCore.Actions
                 if (error != "")
                 {
                     //Status = eStatus.Failed;
-                    if (Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                    if (Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                     {
                         Error = "Failed to execute the command, Error: " + error;
                     }

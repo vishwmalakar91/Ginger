@@ -95,7 +95,7 @@ namespace Ginger.Reports
                     if (item.ActivitiesIdentifiers.Count > 0)
                     {
                         List<Activity> acts = item.ActivitiesIdentifiers.Select(a => a.IdentifiedActivity).ToList();
-                        Amdocs.Ginger.CoreNET.Execution.eRunStatus status = getGroupActivityStatus(acts, ref elapsed);
+                        Amdocs.Ginger.Common.Enums.eRunStatus status = getGroupActivityStatus(acts, ref elapsed);
                         BFResults += buildXml(status, ref passCount, ref failedCount, ref blockedCount, GingerCore.General.ConvertInvalidXMLCharacters(BF.Name), GingerCore.General.ConvertInvalidXMLCharacters(item.Name), GingerCore.General.ConvertInvalidXMLCharacters(item.Description), elapsed);
                     }
                 }
@@ -111,32 +111,32 @@ namespace Ginger.Reports
                 }
                 if (unGroupedAct.Count > 0)
                 {
-                    Amdocs.Ginger.CoreNET.Execution.eRunStatus status = getGroupActivityStatus(unGroupedAct, ref elapsed);
+                    Amdocs.Ginger.Common.Enums.eRunStatus status = getGroupActivityStatus(unGroupedAct, ref elapsed);
                     BFResults += buildXml(status, ref passCount, ref failedCount, ref blockedCount, GingerCore.General.ConvertInvalidXMLCharacters(BF.Name), "Ungrouped", "Ungrouped", elapsed);
                 }
             }
             else//if there are no groups create default group
             {
-                Amdocs.Ginger.CoreNET.Execution.eRunStatus status = getGroupActivityStatus(BF.Activities.ToList(), ref elapsed);
+                Amdocs.Ginger.Common.Enums.eRunStatus status = getGroupActivityStatus(BF.Activities.ToList(), ref elapsed);
                 BFResults += buildXml(status, ref passCount, ref failedCount, ref blockedCount, GingerCore.General.ConvertInvalidXMLCharacters(BF.Name), "Ungrouped", "Ungrouped", elapsed);
             }          
 
             return BFResults;
         }
 
-        private Amdocs.Ginger.CoreNET.Execution.eRunStatus getGroupActivityStatus(List<Activity> activityList, ref long? elapsed)
+        private Amdocs.Ginger.Common.Enums.eRunStatus getGroupActivityStatus(List<Activity> activityList, ref long? elapsed)
         {
-            Amdocs.Ginger.CoreNET.Execution.eRunStatus status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+            Amdocs.Ginger.Common.Enums.eRunStatus status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
 
             //if there is one fail then Activity status is fail
-            if (activityList.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).FirstOrDefault() != null)
-                status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+            if (activityList.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).FirstOrDefault() != null)
+                status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             else
             {
                 // If we have at least 1 pass then it passed, otherwise will remain Skipped
-                if (activityList.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed).FirstOrDefault() != null)
+                if (activityList.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed).FirstOrDefault() != null)
                 {
-                    status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                    status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 }
             }
 
@@ -159,10 +159,10 @@ namespace Ginger.Reports
             return BFResults;
         }
 
-        private string buildXml(Amdocs.Ginger.CoreNET.Execution.eRunStatus? status, ref int passCount, ref int failedCount, ref int blockedCount, string BFName, string activityName, string description, long? elapsed)
+        private string buildXml(Amdocs.Ginger.Common.Enums.eRunStatus? status, ref int passCount, ref int failedCount, ref int blockedCount, string BFName, string activityName, string description, long? elapsed)
         {
             string BFResults = string.Empty;
-            if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
                 passCount++;
                 BFResults = BFResults + @"
@@ -170,7 +170,7 @@ namespace Ginger.Reports
                  @""" duration-ms=""" + elapsed + @""" started-at="""" description=""" + description + @""" finished-at="""">
                  </test-method>";
             }
-            else if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+            else if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
             {
                 failedCount++;
                 BFResults = BFResults + @"
@@ -178,7 +178,7 @@ namespace Ginger.Reports
                  @""" duration-ms=""" + elapsed + @""" started-at="""" description=""" + description + @""" finished-at="""">
                  </test-method>";
             }
-            else if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked || status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending || status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped)
+            else if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked || status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending || status == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped)
             {
                 blockedCount++;
                 BFResults = BFResults + @"

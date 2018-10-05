@@ -419,7 +419,7 @@ namespace Ginger.Run
                 AddExecutionDetailsToLog(eExecutionPahse.End, "Run Set", RunSetReport.Name, RunSetReport);
                 if (App.RunningFromConfigFile)
                 {
-                    //Amdocs.Ginger.CoreNET.Execution.eRunStatus.TryParse(RunSetReport.RunSetExecutionStatus, out App.RunSetExecutionStatus);//saving the status for determin Ginger exit code
+                    //Amdocs.Ginger.Common.Enums.eRunStatus.TryParse(RunSetReport.RunSetExecutionStatus, out App.RunSetExecutionStatus);//saving the status for determin Ginger exit code
                     App.RunSetExecutionStatus = RunSetReport.RunSetExecutionStatus;
                 }
                 if(App.RunsetExecutor.RunSetConfig.LastRunsetLoggerFolder != null && App.RunsetExecutor.RunSetConfig.LastRunsetLoggerFolder.Equals("-1"))
@@ -720,7 +720,7 @@ namespace Ginger.Run
                 //
                 // Defects Suggestion section (to be considered to remove to separate function)
                 //
-                if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     if (App.RunsetExecutor.DefectSuggestionsList.Where(z => z.FailedActionGuid == act.Guid).ToList().Count > 0)
                         return;
@@ -879,7 +879,7 @@ namespace Ginger.Run
                                     object ri = (ActivityReport)LoadObjFromJSonFile(LastActivityStatusFile, typeof(ActivityReport));
                                     return ((ActivityReport)ri).RunStatus;
                                 }
-                                catch { return Amdocs.Ginger.CoreNET.Execution.eRunStatus.NA.ToString(); }
+                                catch { return Amdocs.Ginger.Common.Enums.eRunStatus.NA.ToString(); }
                             }
                         }
                     }
@@ -926,8 +926,8 @@ namespace Ginger.Run
                         System.IO.Directory.CreateDirectory(folder);
 
                     ExecutionLogger ExecutionLogger = new ExecutionLogger();
-                    Amdocs.Ginger.CoreNET.Execution.eRunStatus gingerRunnerStatus = gingerrunner.RunsetStatus;
-                    if (gingerRunnerStatus != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed && gingerRunnerStatus != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed && gingerRunnerStatus != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+                    Amdocs.Ginger.Common.Enums.eRunStatus gingerRunnerStatus = gingerrunner.RunsetStatus;
+                    if (gingerRunnerStatus != Amdocs.Ginger.Common.Enums.eRunStatus.Passed && gingerRunnerStatus != Amdocs.Ginger.Common.Enums.eRunStatus.Failed && gingerRunnerStatus != Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
                     {
                         continue;
                     }
@@ -1042,7 +1042,7 @@ namespace Ginger.Run
                     System.IO.Directory.CreateDirectory(reportpath);
                     this.ExecutionLogBusinessFlowsCounter = counter;                    
                     runner.CalculateBusinessFlowFinalStatus(bf, true);
-                    if (bf.RunStatus != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed && bf.RunStatus != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed && bf.RunStatus != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+                    if (bf.RunStatus != Amdocs.Ginger.Common.Enums.eRunStatus.Passed && bf.RunStatus != Amdocs.Ginger.Common.Enums.eRunStatus.Failed && bf.RunStatus != Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
                     {
                         continue;
                     }
@@ -1098,7 +1098,7 @@ namespace Ginger.Run
                     {
                         continue;
                     }
-                    if (activity.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed && activity.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed && activity.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+                    if (activity.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed && activity.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Failed && activity.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
                     {
                         continue;
                     }
@@ -1110,7 +1110,7 @@ namespace Ginger.Run
                     activity.VariablesBeforeExec = activity.Variables.Select(a => a.Name + "_:_" + a.Value + "_:_" + a.Description).ToList();
                     foreach (Act action in activity.Acts)
                     {
-                        if (action.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed && action.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed && action.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped && action.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.FailIgnored)
+                        if (action.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed && action.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Failed && action.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Stopped && action.Status != Amdocs.Ginger.Common.Enums.eRunStatus.FailIgnored)
                         {
                             continue;
                         }

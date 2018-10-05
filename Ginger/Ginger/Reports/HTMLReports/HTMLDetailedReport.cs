@@ -56,11 +56,11 @@ namespace Ginger.Reports
                 bftable = "";
                 string runColor = "#00000";
                 TableSize = TableSize + 16.7;
-                if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                 {
                     runColor = "#107400";
                 }
-                else if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                else if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     runColor = "#D9181E";
                 }               
@@ -74,25 +74,25 @@ namespace Ginger.Reports
                 }
 
                 //Added as part of resolving defect 2147
-                if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running ) 
+                if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Running ) 
                 {
-                    BF.RunStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                    BF.RunStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                 }
 
 
                 foreach (Activity a in BF.Activities.Where(a => a.GetType() != typeof(ErrorHandler) && a.Active == true).ToList())
                 {
                     //Added as part of resolving defect 2147
-                    if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending || a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running)   //(a.ElapsedSecs == null) 
+                    if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending || a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Running)   //(a.ElapsedSecs == null) 
                     {
-                        a.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                        a.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
                     }
                     
-                    if (a.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                    if (a.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                     {
                         runColor = "#107400";
                     }
-                    else if (a.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                    else if (a.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                     {
                         runColor = "#D9181E";
                     }

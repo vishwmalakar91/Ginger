@@ -21,7 +21,7 @@ using Amdocs.Ginger.Common.Enums;
 using Amdocs.Ginger.Repository;
 using System;
 
-namespace Ginger.Reports
+namespace Amdocs.Ginger.Common
 {
     public class HTMLReportConfiguration : RepositoryItemBase
     {        

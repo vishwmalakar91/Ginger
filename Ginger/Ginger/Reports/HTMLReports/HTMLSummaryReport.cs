@@ -54,11 +54,11 @@ namespace Ginger.Reports.HTMLReports
                 BusinessFlow BF = BFR.GetBusinessFlow();
                 string runColor = "#00000";
                 TableSize = TableSize + 16.7;
-                if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+                if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
                 {
                     runColor = "#107400";
                 }
-                else if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                else if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     runColor = "#D9181E";
                 }

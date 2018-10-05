@@ -223,7 +223,7 @@ namespace GingerCore.Actions.RobotFramework
                 string robotFileName = RobotFileName.ValueForDriver;
                 if (!File.Exists(robotFileName))
                 {
-                    Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     Error = "Robot File not found at: - " + robotFileName + @", Make sure to include full path";
                     return;
                 }
@@ -256,7 +256,7 @@ namespace GingerCore.Actions.RobotFramework
             }
             catch (Exception ex)
             {
-                Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 Error = ex.Message;
             }
         } // end of Execute
@@ -319,7 +319,7 @@ namespace GingerCore.Actions.RobotFramework
             }
             catch (Exception ex)
             {
-                Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 Error = ex.Message;
             }
         } // end of ExecuteCommandSync

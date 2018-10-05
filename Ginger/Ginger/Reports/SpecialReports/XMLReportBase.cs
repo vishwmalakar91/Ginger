@@ -35,13 +35,13 @@ namespace Ginger.Reports
         public int Failcount { get { return RI.TotalBusinessFlowsFailed; } }
         public int ActivityCount { get { return RI.TotalActivitiesCount;} }
 
-        public int ActivityPass { get { return RI.TotalActivitiesByRunStatus(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed); } }
-        public int ActivityFail { get { return RI.TotalActivitiesByRunStatus(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed); } }
+        public int ActivityPass { get { return RI.TotalActivitiesByRunStatus(Amdocs.Ginger.Common.Enums.eRunStatus.Passed); } }
+        public int ActivityFail { get { return RI.TotalActivitiesByRunStatus(Amdocs.Ginger.Common.Enums.eRunStatus.Failed); } }
         public int ActivityOther { get { return ActivityCount - ActivityPass - ActivityFail; } } // ?? TODO: give details of all options
 
         public int ActionCount { get { return RI.TotalActionsCount(); } }
-        public int ActionPass { get { return RI.TotalActionsCountByStatus(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed); } }
-        public int ActionFail { get { return RI.TotalActionsCountByStatus(Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed); } }
+        public int ActionPass { get { return RI.TotalActionsCountByStatus(Amdocs.Ginger.Common.Enums.eRunStatus.Passed); } }
+        public int ActionFail { get { return RI.TotalActionsCountByStatus(Amdocs.Ginger.Common.Enums.eRunStatus.Failed); } }
         public int ActionOther { get { return ActionCount - ActionPass - ActionFail; } }
 
         public int ValidationCount { get { return RI.TotalValidationsCount(); } }
@@ -55,12 +55,12 @@ namespace Ginger.Reports
             xe.Add(new XElement("td",BF.ElapsedSecs));
 
             XElement xstatus = new XElement("td", BF.RunStatus );
-            if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
                 xstatus.SetAttributeValue("bgColor", "green");
             }
             else
-                if (BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                if (BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                 {
                     xstatus.SetAttributeValue("bgColor", "red");
                 }                

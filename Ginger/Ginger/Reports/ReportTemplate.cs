@@ -145,7 +145,7 @@ namespace Ginger.Reports
             foreach (var BF in mGR.BusinessFlows)
             {
                 if (!GetReportOnlyForExecutedFlow ||
-                         (GetReportOnlyForExecutedFlow && !(BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending || BF.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked)))
+                         (GetReportOnlyForExecutedFlow && !(BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Pending || BF.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked)))
                 {
                     ShowReport(GR, BF, Template, Env);
                 }

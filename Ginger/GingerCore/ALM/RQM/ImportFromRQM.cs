@@ -24,7 +24,6 @@ using System.Threading.Tasks;
 using GingerCore.Activities;
 using System.Text.RegularExpressions;
 using System.Web;
-using GingerCore.Variables;
 using System.Xml;
 using RQM_Repository.Data_Contracts;
 using RQM_Repository;
@@ -37,6 +36,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using GingerCore.External;
 using Amdocs.Ginger.Repository;
+using Amdocs.Ginger.Repository.Variables;
 
 namespace GingerCore.ALM.RQM
 {

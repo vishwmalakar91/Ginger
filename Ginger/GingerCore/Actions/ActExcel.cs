@@ -376,7 +376,7 @@ namespace GingerCore.Actions
                 }
                 catch (Exception ex)
                 {
-                    this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     Error = ex.Message;
                 }
                 finally
@@ -386,7 +386,7 @@ namespace GingerCore.Actions
 
                 if (dt.Rows.Count == 0)
                 {
-                    this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     Error = "No rows found in excel file matching criteria - " + sql;
                 }
             }
@@ -511,13 +511,13 @@ namespace GingerCore.Actions
                     }
                     else if(dt.Rows.Count != 1 && SelectAllRows == false)
                     {
-                        Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         Error = "Excel Query should return only one row" + Environment.NewLine + sql + Environment.NewLine + "Returned: " + dt.Rows.Count + " Records";
                     }                   
                 }
                 catch (Exception ex)
                 {
-                    this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     Error = ex.Message;
                 }
                 finally
@@ -527,7 +527,7 @@ namespace GingerCore.Actions
 
                 if (dt.Rows.Count == 0)
                 {
-                    this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     Error = "No rows found in excel file matching criteria - " + sql;
                 }
             }

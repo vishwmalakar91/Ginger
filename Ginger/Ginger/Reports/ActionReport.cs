@@ -151,7 +151,7 @@ namespace Ginger.Reports
             {
                 if (mAction != null)
                 {
-                    if (mAction.StatusConverter == Act.eStatusConverterOptions.IgnoreFail && mAction.Status==Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+                    if (mAction.StatusConverter == Act.eStatusConverterOptions.IgnoreFail && mAction.Status==Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
                     {
                         return Act.eStatusConverterOptions.IgnoreFail.ToString();
                     }
@@ -363,13 +363,13 @@ namespace Ginger.Reports
         public string screenShots = string.Empty;
         public List<string> screenShotsList = new List<string>();
         
-        public bool IsPassed { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed; } }
-        public bool IsFailed { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed; } }
-        public bool IsPending { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending; } }
-        public bool IsRunning { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running; } }
-        public bool IsStopped { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped; } }
-        public bool IsSkipped { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped; } }
-        public bool IsBlocked { get { return mAction.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked; } }
+        public bool IsPassed { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed; } }
+        public bool IsFailed { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed; } }
+        public bool IsPending { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending; } }
+        public bool IsRunning { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Running; } }
+        public bool IsStopped { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped; } }
+        public bool IsSkipped { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped; } }
+        public bool IsBlocked { get { return mAction.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked; } }
 
         public ActionReport(GingerCore.Actions.Act Act, GingerCore.Environments.ProjEnvironment environment=null)
         {

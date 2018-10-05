@@ -161,7 +161,7 @@ namespace GingerCore.Actions
                 case eFileoperations.CheckFileExists:
                     if (!System.IO.File.Exists(calculatedSourceFilePath))
                     {
-                        base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         base.ExInfo = "File doesn't exists";
                         return;
                     }
@@ -170,7 +170,7 @@ namespace GingerCore.Actions
                 case eFileoperations.CheckFolderExists:
                     if (!System.IO.Directory.Exists(calculatedSourceFilePath))
                     {
-                        base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         base.ExInfo = "Folder doesn't exists";
                         return;
                     }
@@ -192,7 +192,7 @@ namespace GingerCore.Actions
                         }
                         else
                         {
-                            base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                             base.Error = "Destination folder not found";
                             base.ExInfo = "Destination folder not found";
                             return;
@@ -200,7 +200,7 @@ namespace GingerCore.Actions
                     }
                     else
                     {
-                        base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         base.ExInfo = "File doesn't exists";
                         base.Error = "File doesn't exists";
 
@@ -220,7 +220,7 @@ namespace GingerCore.Actions
                     }
                     else
                     {
-                        base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         base.ExInfo = "File doesn't exists";
                         base.Error = "File doesn't exists";
                         return;
@@ -230,7 +230,7 @@ namespace GingerCore.Actions
                     SetupDestinationfolders();
                     if (IsSorcePathRelative)
                     {
-                        base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         base.ExInfo = "You cannot move a file from Solution";
                         base.Error = "You cannot move a file from Solution";
                         return;
@@ -240,7 +240,7 @@ namespace GingerCore.Actions
                         if (!System.IO.Directory.Exists(DestinationFolder))
                         {
 
-                            base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                            base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                             base.ExInfo = "Destination Folder doesn't exists ";
                             base.Error = "Destination Folder doesn't exists";
                             return;
@@ -249,7 +249,7 @@ namespace GingerCore.Actions
                     }
                     else
                     {
-                        base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         base.ExInfo = "File doesn't exists";
                         base.Error = "File doesn't exists";
                         return;
@@ -289,7 +289,7 @@ namespace GingerCore.Actions
 
             }catch(Exception e)
             {
-                base.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                base.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 if (e.Message == "The system cannot find the file specified")
                 {
                     base.ExInfo = "File at path " + fileName + " doesn't exists";

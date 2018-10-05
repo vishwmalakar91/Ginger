@@ -217,30 +217,30 @@ namespace GingerCore.ALM.QCRestAPI
                                         {
                                             switch (matchingActivity.Status)
                                             {
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Failed:
                                                     runStep.Status = "Failed";
-                                                    List<Act> failedActs = matchingActivity.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).ToList();
+                                                    List<Act> failedActs = matchingActivity.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).ToList();
                                                     string errors = string.Empty;
                                                     foreach (Act act in failedActs) errors += act.Error + Environment.NewLine;
                                                     runStep.Actual = errors;
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.NA:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.NA:
                                                     runStep.ElementsField["status"] = "N/A";
                                                     runStep.ElementsField["actual"] = "NA";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Passed:
                                                     runStep.ElementsField["status"] = "Passed";
                                                     runStep.ElementsField["actual"] = "Passed as expected";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Skipped:
                                                     runStep.ElementsField["status"] = "N/A";
                                                     runStep.ElementsField["actual"] = "Skipped";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Pending:
                                                     runStep.ElementsField["status"] = "No Run";
                                                     runStep.ElementsField["actual"] = "Was not executed";
                                                     break;
-                                                case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running:
+                                                case Amdocs.Ginger.Common.Enums.eRunStatus.Running:
                                                     runStep.ElementsField["status"] = "Not Completed";
                                                     runStep.ElementsField["actual"] = "Not Completed";
                                                     break;

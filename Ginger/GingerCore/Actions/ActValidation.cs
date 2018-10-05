@@ -75,12 +75,12 @@ namespace GingerCore.Actions
             if (rc == "-1")
             {
                 ConditionCalculated += " is True";
-                this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
             }
             else
             {
                 ConditionCalculated += " is False";
-                this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
         }
 

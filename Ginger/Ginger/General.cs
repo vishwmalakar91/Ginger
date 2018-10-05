@@ -360,25 +360,25 @@ namespace Ginger
 
 
 
-        public static SolidColorBrush GetStatusBrush(Amdocs.Ginger.CoreNET.Execution.eRunStatus status)
+        public static SolidColorBrush GetStatusBrush(Amdocs.Ginger.Common.Enums.eRunStatus status)
         {
-            if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)
+            if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)
             {
                 return App.Current.TryFindResource("$PassedStatusColor") as SolidColorBrush;
             }
-            if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed)
+            if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed)
             {
                 return App.Current.TryFindResource("$FailedStatusColor") as SolidColorBrush;
             }
-            if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked)
+            if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked)
             {
                 return App.Current.TryFindResource("$BlockedStatusColor") as SolidColorBrush;
             }
-            if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+            if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
             {
                 return App.Current.TryFindResource("$StoppedStatusColor") as SolidColorBrush;
             }
-            if (status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped)
+            if (status == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped)
             {
                 return App.Current.TryFindResource("$SkippedStatusColor") as SolidColorBrush;
             }

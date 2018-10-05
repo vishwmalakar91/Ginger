@@ -419,13 +419,11 @@
     <Compile Include="Actions\WebServices\ActSoapUiInputValue.cs" />
     <Compile Include="Actions\WebServices\WebAPI\ActWebAPIModel.cs" />
     <Compile Include="Actions\WebServices\WebAPI\WebAPIKeyBodyValues.cs" />
-    <Compile Include="Actions\ActOutDataSourceConfig.cs" />
     <Compile Include="Actions\Common\ActMedia.cs" />
     <Compile Include="Actions\Common\ActBattery.cs" />
     <Compile Include="Actions\Common\ActPhone.cs" />
     <Compile Include="Actions\Common\ActDevice.cs" />
     <Compile Include="Actions\ActDemoPage.cs" />
-    <Compile Include="Actions\Common\ActionParamInfo.cs" />
     <Compile Include="Actions\Common\ElementConfigControl.cs" />
     <Compile Include="Actions\JSON\ActJSONTagValidation.cs" />
     <Compile Include="Actions\PlugIns\ActPlugIn.cs" />
@@ -443,7 +441,6 @@
     <Compile Include="Actions\ActImage.cs" />
     <Compile Include="Actions\ActLowLevelClicks.cs" />
     <Compile Include="Actions\ActCreatePDFChart.cs" />
-    <Compile Include="Actions\Act.cs" />
     <Compile Include="Actions\ActActivateRow.cs" />
     <Compile Include="Actions\ActGetMsgboxText.cs" />
     <Compile Include="Actions\ActButton.cs" />
@@ -471,7 +468,6 @@
     <Compile Include="Actions\ActCompareImgs.cs" />
     <Compile Include="Actions\ActSendKeys.cs" />
     <Compile Include="Actions\ActSetConfig.cs" />
-    <Compile Include="Actions\ActSetVariableValue.cs" />
     <Compile Include="Actions\ActSmartSync.cs" />
     <Compile Include="Actions\ActLink.cs" />
     <Compile Include="Actions\ActMenuItem.cs" />
@@ -488,7 +484,6 @@
     <Compile Include="Actions\ActWebService.cs" />
     <Compile Include="Actions\ActWebSitePerformanceTiming.cs" />
     <Compile Include="Actions\ActWindow.cs" />
-    <Compile Include="Actions\Common\ActionDetails.cs" />
     <Compile Include="Actions\Common\ActDeviceButton.cs" />
     <Compile Include="Actions\Android\ActShell.cs" />
     <Compile Include="Actions\ASCF\ActASCFBrowserElement.cs" />
@@ -523,7 +518,6 @@
       <DependentUpon>ActionHelper.xaml</DependentUpon>
     </Compile>
     <Compile Include="Actions\UIAutomation\ActUIASwitchWindow.cs" />
-    <Compile Include="Actions\ActWithoutDriver.cs" />
     <Compile Include="Actions\UIAutomation\ActUIAGrid.cs" />
     <Compile Include="Actions\UIAutomation\ActUIALabel.cs" />
     <Compile Include="Actions\UIAutomation\ActUIAClickOnPoint.cs" />
@@ -538,8 +532,6 @@
     <Compile Include="Actions\XML\ActXMLTagValidation.cs" />
     <Compile Include="Actions\XML\ActXMLProcessing.cs" />
     <Compile Include="Actions\XML\XMLProcessor.cs" />
-    <Compile Include="Activities\ActivitiesGroup.cs" />
-    <Compile Include="Activities\ActivityIdentifiers.cs" />
     <Compile Include="ALM\ALMConfig.cs" />
     <Compile Include="ALM\ALMCore.cs" />
     <Compile Include="ALM\PublishToALMConfig.cs" />
@@ -580,10 +572,8 @@
     <Compile Include="ALM\RQM\RQMConnect.cs" />
     <Compile Include="DataSource\ActDSTableElement.cs" />
     <Compile Include="DataSource\ActDSConditon.cs" />
-    <Compile Include="DataSource\DataSourceBase.cs" />
     <Compile Include="DataSource\DataSourceTableColumn.cs" />
     <Compile Include="DataSource\DataSourceTable.cs" />
-    <Compile Include="Dictionaries\GingerDicser.cs" />
     <Compile Include="Drivers\AndroidADB\AndroidADBDriver.cs" />
     <Compile Include="Drivers\AndroidADB\AndroidADBDriverWindow.xaml.cs">
       <DependentUpon>AndroidADBDriverWindow.xaml</DependentUpon>
@@ -664,8 +654,6 @@
     <Compile Include="GeneralLib\JSONHelper.cs" />
     <Compile Include="GeneralLib\StringCompressor.cs" />
     <Compile Include="Extensions\Screenshot.cs" />
-    <Compile Include="DataSource\AccessDataSource.cs" />
-    <Compile Include="GeneralLib\BackupRestoreAttributes.cs" />
     <Compile Include="GeneralLib\EncryptionHandler.cs" />
     <Compile Include="GeneralLib\ComboBoxWindow.xaml.cs">
       <DependentUpon>ComboBoxWindow.xaml</DependentUpon>
@@ -675,12 +663,6 @@
     <Compile Include="NoSqlBase\GingerCassandra.cs" />
     <Compile Include="NoSqlBase\MyClassBuilder.cs" />
     <Compile Include="NoSqlBase\NoSqlBase.cs" />
-    <Compile Include="Platforms\PlatformsInfo\AndroidPlatformInfo.cs" />
-    <Compile Include="Platforms\PlatformsInfo\WindowsPlatform.cs" />
-    <Compile Include="Platforms\PlatformsInfo\PowerBuilderPlatform.cs" />
-    <Compile Include="Platforms\PlatformsInfo\JavaPlatform.cs" />
-    <Compile Include="Platforms\PlatformsInfo\PlatformInfoBase.cs" />
-    <Compile Include="Platforms\PlatformsInfo\WebPlatformInfo.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -696,10 +678,6 @@
     <Compile Include="UserControls\ucTextDicResource.xaml.cs">
       <DependentUpon>ucTextDicResource.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Variables\DecimalRandom.cs" />
-    <Compile Include="Variables\VariableDependency.cs" />
-    <Compile Include="Activities\ErrorHandler.cs" />
-    <Compile Include="Activities\Activity.cs" />
     <Compile Include="Animations\Animations.cs" />
     <Compile Include="DragDrop\VisualDrag.xaml.cs">
       <DependentUpon>VisualDrag.xaml</DependentUpon>
@@ -733,48 +711,28 @@
     </Compile>
     <Compile Include="Drivers\WebServicesDriverLib\WebServiceXML.cs" />
     <Compile Include="Drivers\WindowsLib\WindowsDriver.cs" />
-    <Compile Include="Environments\EnvApplication.cs" />
-    <Compile Include="Environments\LoginUser.cs" />
-    <Compile Include="Environments\ProjEnvironment.cs" />
-    <Compile Include="Environments\UnixServer.cs" />
-    <Compile Include="FlowControlLib\FlowControl.cs" />
-    <Compile Include="Environments\Database.cs" />
     <Compile Include="GeneralLib\General.cs" />
     <Compile Include="GeneralLib\GenericWindow.xaml.cs">
       <DependentUpon>GenericWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GeneralLib\VBS.cs" />
     <Compile Include="Helpers\TextBlockHelper.cs" />
-    <Compile Include="Platforms\ApplicationAgent.cs" />
-    <Compile Include="Platforms\ApplicationPlatform.cs" />
-    <Compile Include="Platforms\TargetApplication.cs" />
-    <Compile Include="Reporter\GingerHelperMsgsPool.cs" />
-    <Compile Include="Variables\VariableDynamic.cs" />
-    <Compile Include="Variables\VariableSelectionList.cs" />
-    <Compile Include="Variables\VariablePasswordString.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v1050000_to_V1060000.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v1040000_to_V1050000.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v1030000_to_V1040000.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v10203_TO_v1020000.cs" />
     <Compile Include="GeneralFunctions\RegistryFunctions.cs" />
     <Compile Include="GeneralLib\SMS.cs" />
-    <Compile Include="GeneralLib\Email.cs" />
     <Compile Include="GeneralLib\InputBoxWindow.xaml.cs">
       <DependentUpon>InputBoxWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Platforms\Agent.cs" />
-    <Compile Include="Platforms\DriverConfigParam.cs" />
-    <Compile Include="Platforms\Platform.cs" />
-    <Compile Include="Reporter\Reporter.cs" />
     <Compile Include="Reporter\BotDialog.xaml.cs">
       <DependentUpon>BotDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\XMLViewer.xaml.cs">
       <DependentUpon>XMLViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Reporter\UserMessagesPool.cs" />
     <Compile Include="Repository\RepositorySerializer.cs" />
-    <Compile Include="BusinessFlow.cs" />
     <Compile Include="Drivers\ASCF\ASCFDriver.cs" />
     <Compile Include="Drivers\DriverBase.cs" />
     <Compile Include="Drivers\InternalBrowserLib\InternalBrowserWindow.xaml.cs">
@@ -792,15 +750,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Repository\RepositoryItem.cs" />
-    <Compile Include="ValueExpression.cs" />
-    <Compile Include="Variables\VariableBase.cs" />
-    <Compile Include="Variables\VariableRandomString.cs" />
-    <Compile Include="Variables\VariableSequence.cs" />
-    <Compile Include="Variables\VariableTimer.cs" />
-    <Compile Include="Variables\VariableString.cs" />
-    <Compile Include="Variables\VariableList.cs" />
-    <Compile Include="Variables\VariableRandomNumber.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v1020000_to_V1030000.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v2010000_to_V2020000.cs" />
     <Compile Include="Repository\UpgradeLib\XML Upgrade\v2000000_to_V2010000.cs" />
@@ -936,6 +885,7 @@
     <Folder Include="ALM\RQM\RQMServerConfigurationsPackage\RQM_Export\CCM\fa1qm1\" />
     <Folder Include="ALM\RQM\RQMServerConfigurationsPackage\RQM_Export\RM\" />
     <Folder Include="ALM\RQM\RQMServerConfigurationsPackage\RQM_Fields\" />
+    <Folder Include="Dictionaries\" />
     <Folder Include="Drivers\JavaDriverLib\GingerJavaAgent\bin\com\amdocs\ginger\ASCFPack\" />
     <Folder Include="Plugins\Jenkins\" />
     <Folder Include="Themes\Theme1\Images\Logo\" />

@@ -105,7 +105,7 @@ namespace GingerCore.Actions
                     // VE.ReplaceDataSource(ValueExp);                    
                     if(ETERC.ValueCalculated=="The Export Excel can be *.xlsx only")
                     {
-                        this.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                        this.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                         Error = "The Export Excel can be *.xlsx only";
                     }
                     else

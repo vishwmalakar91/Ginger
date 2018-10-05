@@ -1185,7 +1185,7 @@ namespace GingerCore.Drivers
                 }
                 else
                 {
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                     act.Error = "Element not found - " + act.LocateBy + " - " + act.LocateValueCalculated + Environment.NewLine + e.Message;
                     return null;
                 }

@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using GingerCore.Actions;
 using System.Threading;
 using GingerCoreNET.SolutionRepositoryLib.RepositoryObjectsLib.PlatformsLib;
+using Amdocs.Ginger.Common;
 
 namespace GingerCore.Drivers
 {

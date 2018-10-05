@@ -169,7 +169,7 @@ namespace UnitTests.NonUITests.GingerRunnerTests
             actDummy.EnableActionLogConfig = true;
 
             //actDummy.Execute();
-            actDummy.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+            actDummy.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
 
             //Act
             gingerRunnerLogger.LogAction(actDummy);
@@ -192,7 +192,7 @@ namespace UnitTests.NonUITests.GingerRunnerTests
             actDummy.EnableActionLogConfig = true;
 
             // set action status to passed
-            actDummy.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+            actDummy.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
 
             //Act
             gingerRunnerLogger.LogAction(actDummy);

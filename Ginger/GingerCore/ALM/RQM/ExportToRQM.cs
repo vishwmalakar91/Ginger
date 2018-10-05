@@ -376,38 +376,38 @@ namespace GingerCore.ALM.RQM
 
                     switch (act.Status)
                     {
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Failed:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.Failed;
                             string errors = string.Empty;
-                            List<Act> failedActs = act.Acts.Where(x => x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed).ToList();
+                            List<Act> failedActs = act.Acts.Where(x => x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed).ToList();
                             foreach (Act action in failedActs) errors += action.Error + Environment.NewLine;
                             exeStep.StepActualResult = errors;
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Passed:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.Passed;
                             exeStep.StepActualResult = "Passed as expected";
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.NA:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.NA:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.NA;
                             exeStep.StepActualResult = "NA";
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Pending:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.In_Progress;
                             exeStep.StepActualResult = "Was not executed";
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Running:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.In_Progress;
                             exeStep.StepActualResult = "Not Completed";
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Skipped:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.Outscoped;
                             exeStep.StepActualResult = "Skipped";
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Blocked:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.Blocked;
                             exeStep.StepActualResult = "Blocked";
                             break;
-                        case Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped:
+                        case Amdocs.Ginger.Common.Enums.eRunStatus.Stopped:
                             exeStep.StepStatus = ACL_Data_Contract.ExecutoinStatus.Inconclusive;
                             exeStep.StepActualResult = "Stopped";
                             break;

@@ -821,8 +821,8 @@ namespace Ginger
             //When running Runactivity as standalone from GUI, SetActionSkipStatus is not called. Handling it here for now.
             foreach (Act act in App.BusinessFlow.CurrentActivity.Acts)
             {
-                if (act.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending)
-                    act.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped;
+                if (act.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending)
+                    act.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped;
             }
         }
 

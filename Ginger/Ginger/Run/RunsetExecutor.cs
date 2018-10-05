@@ -133,7 +133,7 @@ namespace Ginger.Run
         public void InitRunner(GingerRunner runner)
         {
             //Configure Runner for execution
-            runner.Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+            runner.Status = Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
             ConfigureRunnerForExecution(runner);
 
             //Set the Apps agents
@@ -317,7 +317,7 @@ namespace Ginger.Run
                         if (doContinueRun == false)
                             GR.RunRunner();
                         else
-                            if (GR.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)//we continue only Stopped Runners
+                            if (GR.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)//we continue only Stopped Runners
                             {
                                 GR.ResetRunnerExecutionDetails(doNotResetBusFlows: true);//reset stopped runners only and not their BF's
                                 GR.ContinueRun(GingerRunner.eContinueLevel.Runner, GingerRunner.eContinueFrom.LastStoppedAction);
@@ -342,12 +342,12 @@ namespace Ginger.Run
                         if (doContinueRun == false)
                             GR.RunRunner();
                         else
-                            if (GR.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)//we continue only Stopped Runners
+                            if (GR.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)//we continue only Stopped Runners
                             {
                                 GR.ResetRunnerExecutionDetails(doNotResetBusFlows: true);//reset stopped runners only and not their BF's
                                 GR.ContinueRun(GingerRunner.eContinueLevel.Runner, GingerRunner.eContinueFrom.LastStoppedAction);
                             }
-                            else if(GR.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending)//continue the runners flow
+                            else if(GR.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Pending)//continue the runners flow
                             {
                                 GR.RunRunner();
                             }
@@ -551,7 +551,7 @@ namespace Ginger.Run
                     return 1;
                 }
 
-                if (App.RunSetExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed)//TODO: improve
+                if (App.RunSetExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed)//TODO: improve
                     return 0;
                 else
                     return 1;

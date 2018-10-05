@@ -163,39 +163,39 @@ namespace Ginger.Reports
         [FieldParamsFieldType(FieldsType.Field)]
         [FieldParamsIsNotMandatory(true)]
         [FieldParamsIsSelected(true)]
-        public Amdocs.Ginger.CoreNET.Execution.eRunStatus GingerExecutionStatus
+        public Amdocs.Ginger.Common.Enums.eRunStatus GingerExecutionStatus
         {
             get
             {
                 if (TotalBusinessFlowsFailed > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
                 }
                 else if ((from x in BusinessFlowReports where x.IsBlocked == true select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Blocked;
                 }
                 else if ((from x in BusinessFlowReports where x.IsStopped == true select x).Count() > 0)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Stopped;
                 }
                 else if ((from x in BusinessFlowReports where (x.IsPassed == true || x.IsSkipped == true) select x).Count() == TotalBusinessFlows)
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Passed;
                 }
                 else
                 {
-                    return Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending;
+                    return Amdocs.Ginger.Common.Enums.eRunStatus.Pending;
                 }
             }
         }
-        public bool IsPassed { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed; } }
-        public bool IsFailed { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed; } }
-        public bool IsPending { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending; } }
-        public bool IsRunning { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running; } }
-        public bool IsStopped { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped; } }
-        public bool IsSkipped { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped; } }
-        public bool IsBlocked { get { return GingerExecutionStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked; } }
+        public bool IsPassed { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed; } }
+        public bool IsFailed { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed; } }
+        public bool IsPending { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Pending; } }
+        public bool IsRunning { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Running; } }
+        public bool IsStopped { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped; } }
+        public bool IsSkipped { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped; } }
+        public bool IsBlocked { get { return GingerExecutionStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked; } }
 
         [FieldParams]
         [FieldParamsNameCaption("Number Of Business Flows")]

@@ -111,7 +111,7 @@ namespace GingerWPF.BusinessFlowsLib
                     this.Dispatcher.Invoke(() =>
                     {
                         // just quick code to show activity progress..
-                        int c = (from x in mBusinessFlow.Activities where x.Status != Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending select x).Count();
+                        int c = (from x in mBusinessFlow.Activities where x.Status != Amdocs.Ginger.Common.Enums.eRunStatus.Pending select x).Count();
                         ProgressBar.Maximum = mBusinessFlow.Activities.Count;
                         ProgressBar.Value = c;
                     });

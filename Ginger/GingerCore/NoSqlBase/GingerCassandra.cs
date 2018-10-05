@@ -24,6 +24,7 @@ using Cassandra;
 using GingerCore.Actions;
 using GingerCore.NoSqlBase.DataAccess;
 using System.Text.RegularExpressions;
+using Amdocs.Ginger.Common;
 
 namespace GingerCore.NoSqlBase
 {

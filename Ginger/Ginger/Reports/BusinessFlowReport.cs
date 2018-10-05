@@ -187,16 +187,16 @@ namespace Ginger.Reports
         public string RunStatus
         {
             get { return mBusinessFlow.RunStatus.ToString(); }
-            set { mBusinessFlow.RunStatus = (Amdocs.Ginger.CoreNET.Execution.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.CoreNET.Execution.eRunStatus), value); }
+            set { mBusinessFlow.RunStatus = (Amdocs.Ginger.Common.Enums.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.Common.Enums.eRunStatus), value); }
         }
 
-        public bool IsPassed { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed; } }
-        public bool IsFailed { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed; } }
-        public bool IsPending { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Pending; } }
-        public bool IsRunning { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Running; } }
-        public bool IsStopped { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped; } }
-        public bool IsSkipped { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped; } }
-        public bool IsBlocked { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked; } }
+        public bool IsPassed { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed; } }
+        public bool IsFailed { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed; } }
+        public bool IsPending { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Pending; } }
+        public bool IsRunning { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Running; } }
+        public bool IsStopped { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped; } }
+        public bool IsSkipped { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Skipped; } }
+        public bool IsBlocked { get { return mBusinessFlow.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Blocked; } }
 
         internal BusinessFlow GetBusinessFlow()
         {
@@ -331,12 +331,12 @@ namespace Ginger.Reports
             {
                 if (this.ExecutionLoggerIsEnabled)
                 {
-                    int count = (from x in this.Activities where (Amdocs.Ginger.CoreNET.Execution.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.CoreNET.Execution.eRunStatus), x.RunStatus) == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed select x).Count();
+                    int count = (from x in this.Activities where (Amdocs.Ginger.Common.Enums.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.Common.Enums.eRunStatus), x.RunStatus) == Amdocs.Ginger.Common.Enums.eRunStatus.Passed select x).Count();
                     return count;
                 }
                 else
                 {
-                    int count = (from x in mBusinessFlow.Activities where x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed select x).Count();
+                    int count = (from x in mBusinessFlow.Activities where x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Passed select x).Count();
                     return count;
                 }
             }
@@ -348,12 +348,12 @@ namespace Ginger.Reports
             {
                 if (this.ExecutionLoggerIsEnabled)
                 {
-                    int count = (from x in Activities where (Amdocs.Ginger.CoreNET.Execution.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.CoreNET.Execution.eRunStatus), x.RunStatus) == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed select x).Count();
+                    int count = (from x in Activities where (Amdocs.Ginger.Common.Enums.eRunStatus)Enum.Parse(typeof(Amdocs.Ginger.Common.Enums.eRunStatus), x.RunStatus) == Amdocs.Ginger.Common.Enums.eRunStatus.Failed select x).Count();
                     return count;
                 }
                 else
                 {
-                    int count = (from x in mBusinessFlow.Activities where x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed select x).Count();
+                    int count = (from x in mBusinessFlow.Activities where x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Failed select x).Count();
                     return count;
                 }
             }
@@ -363,7 +363,7 @@ namespace Ginger.Reports
         {
             get
             {
-                int count = (from x in Activities where x.Status == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped.ToString() select x).Count();
+                int count = (from x in Activities where x.Status == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped.ToString() select x).Count();
                 return count;
             }
         }

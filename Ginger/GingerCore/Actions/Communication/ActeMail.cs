@@ -226,7 +226,7 @@ namespace GingerCore.Actions.Communication
             if (isSuccess == false)
             {
                 Error = e.Event;                
-                Status = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed;
+                Status = Amdocs.Ginger.Common.Enums.eRunStatus.Failed;
             }
 
             if (e.Event != null && e.Event.IndexOf("Failed") >= 0)

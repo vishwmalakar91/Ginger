@@ -240,7 +240,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Passed.ToString();
                 int count = AllActivitiesForReport.Where(activity => activity.Status == sStatus).Count();
                 return count;
 
@@ -250,7 +250,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString();
                 int count = AllActivitiesForReport.Where(activity => activity.Status == sStatus).Count();
                 return count;
 
@@ -260,7 +260,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked.ToString();
                 int count = AllActivitiesForReport.Where(activity => activity.Status == sStatus).Count();
                 return count;
 
@@ -270,7 +270,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped.ToString();
                 int count = AllActivitiesForReport.Where(activity => activity.Status == sStatus).Count();
                 return count;
 
@@ -282,7 +282,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Passed.ToString();
                 int count = AllActionsForReport.Where(act => act.Status == sStatus).Count();
                 return count;
 
@@ -292,7 +292,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Failed.ToString();
                 int count = AllActionsForReport.Where(act => act.Status == sStatus).Count();
                 return count;
 
@@ -302,7 +302,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Blocked.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Blocked.ToString();
                 int count = AllActionsForReport.Where(act => act.Status == sStatus).Count();
                 return count;
 
@@ -312,7 +312,7 @@ namespace Ginger.Reports
         {
             get
             {
-                string sStatus = Amdocs.Ginger.CoreNET.Execution.eRunStatus.Skipped.ToString();
+                string sStatus = Amdocs.Ginger.Common.Enums.eRunStatus.Skipped.ToString();
                 int count = AllActionsForReport.Where(act => act.Status == sStatus).Count();
                 return count;
 
@@ -388,7 +388,7 @@ namespace Ginger.Reports
             } 
         }
 
-        public int TotalActivitiesByRunStatus(Amdocs.Ginger.CoreNET.Execution.eRunStatus RunStatus)
+        public int TotalActivitiesByRunStatus(Amdocs.Ginger.Common.Enums.eRunStatus RunStatus)
         {
             //TODO: fix me to use the same enum on activitym add GetActivity on ActivityReport
             string sStatus = RunStatus.ToString();
@@ -402,7 +402,7 @@ namespace Ginger.Reports
             return count;
         }
 
-        public int TotalActionsCountByStatus(Amdocs.Ginger.CoreNET.Execution.eRunStatus Status)
+        public int TotalActionsCountByStatus(Amdocs.Ginger.Common.Enums.eRunStatus Status)
         {
             //TODO: fix me to use the same enum on Act add GetAct on ActivityReport
             string sStatus = Status.ToString();

@@ -81,7 +81,7 @@ namespace Ginger.Run
 
 
         [IsSerializedForLocalRepository]
-        public Amdocs.Ginger.CoreNET.Execution.eRunStatus Status { get; set; }
+        public Amdocs.Ginger.Common.Enums.eRunStatus Status { get; set; }
         
         public BusinessFlow BusinessFlow { get; set; }        
 

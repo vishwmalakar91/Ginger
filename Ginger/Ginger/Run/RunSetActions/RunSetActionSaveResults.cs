@@ -111,7 +111,7 @@ namespace Ginger.Run.RunSetActions
                             {
                                 if (bf.Active == true)
                                 {
-                                    if (bf.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Passed || bf.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Failed || bf.RunStatus == Amdocs.Ginger.CoreNET.Execution.eRunStatus.Stopped)
+                                    if (bf.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Passed || bf.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Failed || bf.RunStatus == Amdocs.Ginger.Common.Enums.eRunStatus.Stopped)
                                     {
                                         ReportInfo BFRI = new ReportInfo(App.AutomateTabGingerRunner.ProjEnvironment, bf);
 
