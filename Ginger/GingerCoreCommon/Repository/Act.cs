@@ -22,12 +22,8 @@ using Amdocs.Ginger.Common.Actions;
 using Amdocs.Ginger.Common.Repository;
 using Amdocs.Ginger.Common.UIElement;
 using Amdocs.Ginger.Repository;
-using GingerCore.Actions.Common;
 using GingerCore.FlowControlLib;
-using GingerCore.GeneralLib;
-using GingerCore.Helpers;
-using GingerCore.Properties;
-using GingerCore.Variables;
+using GingerCore;
 using GingerCoreNET.SolutionRepositoryLib.RepositoryObjectsLib.PlatformsLib;
 using System;
 using System.Collections;
@@ -35,7 +31,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Windows.Controls;
 using Amdocs.Ginger.Repository.Variables;
 
 namespace GingerCore.Actions
